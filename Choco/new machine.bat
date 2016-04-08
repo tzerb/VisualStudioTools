@@ -10,3 +10,9 @@ choco install -y git
 choco install -y gitextensions 
 choco install -y powershell 
 choco install -y fiddler 
+
+choco install -y linqpad4
+choco install -y kdiff3 
+choco install -y github
+choco install -y visualstudiocode
+
