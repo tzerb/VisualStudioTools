@@ -1,114 +1,12 @@
-﻿using System;
+﻿using InsuranceAppWebUI.CA;
+using InsuranceAppWebUI.US;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WatiN.Core;
-using WatiN.Core.Constraints;
-using System.Text.RegularExpressions;
+using System;
 using System.Text;
+using WatiN.Core;
 
 namespace InsuranceAppWebUI
 {
-    public class CAAircraftPage
-    {
-        private Browser browser;
-        public CAAircraftPage(Browser bro)
-        {
-            browser = bro;
-        }
-
-        public string hiddenAircraftCountSub { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_hiddenAircraftCountSub")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_hiddenAircraftCountSub")).Value = value; } }
-        public string txtAircraftFAANumber { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtAircraftFAANumber")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtAircraftFAANumber")).Value = value; } }
-        public string txtAircraftYear { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtAircraftYear")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtAircraftYear")).Value = value; } }
-        public string txtAircraftMake { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtAircraftMake")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtAircraftMake")).Value = value; } }
-        public string txtAircraftModel { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtAircraftModel")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtAircraftModel")).Value = value; } }
-        public string txtTotalSeats { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtTotalSeats")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtTotalSeats")).Value = value; } }
-        public string txtHorsepower { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtHorsepower")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtHorsepower")).Value = value; } }
-        public string txtOverhaulHours { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtOverhaulHours")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtOverhaulHours")).Value = value; } }
-        public string APCurrentValue { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_APCurrentValue")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_APCurrentValue")).Value = value; } }
-        public string APCompletedValue { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_APCompletedValue")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_APCompletedValue")).Value = value; } }
-        public string APKitValue { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_APKitValue")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_APKitValue")).Value = value; } }
-        public string APLocation { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_APLocation")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_APLocation")).Value = value; } }
-        public string txtCurrentInsurance { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtCurrentInsurance")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtCurrentInsurance")).Value = value; } }
-        public string txtHullValue { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtHullValue")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtHullValue")).Value = value; } }
-        public string txtLandplaneValue { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtLandplaneValue")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtLandplaneValue")).Value = value; } }
-        public string txtSeaplaneValue { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtSeaplaneValue")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtSeaplaneValue")).Value = value; } }
-        public string txtAmphibianValue { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtAmphibianValue")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtAmphibianValue")).Value = value; } }
-        public string txtAirportName { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtAirportName")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtAirportName")).Value = value; } }
-        public string txtCommercialUseExplaination { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtCommercialUseExplaination")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtCommercialUseExplaination")).Value = value; } }
-        public string txtUnknownExplain { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtUnknownExplain")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_txtUnknownExplain")).Value = value; } }
-
-        public bool xAircraftchkbxNNumberUnknown { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_chkbxNNumberUnknown")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_chkbxNNumberUnknown")).Checked = value; } }
-        public bool CBLGearConfiguration0 { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLGearConfiguration_0")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLGearConfiguration_0")).Checked = value; } }
-        public bool CBLGearConfiguration3 { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLGearConfiguration_3")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLGearConfiguration_3")).Checked = value; } }
-        public bool CBLGearConfiguration1 { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLGearConfiguration_1")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLGearConfiguration_1")).Checked = value; } }
-        public bool CBLGearConfiguration4 { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLGearConfiguration_4")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLGearConfiguration_4")).Checked = value; } }
-        public bool CBLGearConfiguration2 { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLGearConfiguration_2")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLGearConfiguration_2")).Checked = value; } }
-        public bool CBLGearConfiguration5 { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLGearConfiguration_5")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLGearConfiguration_5")).Checked = value; } }
-        public bool cbxQuoteFor0 { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_cbxQuoteFor_0")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_cbxQuoteFor_0")).Checked = value; } }
-        public bool cbxQuoteFor2 { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_cbxQuoteFor_2")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_cbxQuoteFor_2")).Checked = value; } }
-        public bool cbxQuoteFor1 { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_cbxQuoteFor_1")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_cbxQuoteFor_1")).Checked = value; } }
-        public bool cbxQuoteFor3 { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_cbxQuoteFor_3")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_cbxQuoteFor_3")).Checked = value; } }
-        public bool CBLRunwaysurface0 { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLRunwaysurface_0")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLRunwaysurface_0")).Checked = value; } }
-        public bool CBLRunwaysurface1 { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLRunwaysurface_1")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLRunwaysurface_1")).Checked = value; } }
-        public bool CBLRunwaysurface2 { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLRunwaysurface_2")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLRunwaysurface_2")).Checked = value; } }
-        public bool CBLRunwaysurface3 { get { return browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLRunwaysurface_3")).Checked; } set { browser.CheckBox(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_CBLRunwaysurface_3")).Checked = value; } }
-
-        public SelectList ddlAircraftUse { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_ddlAircraftUse")); } }
-        public SelectList ddlExpireMonth { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_ddlExpireMonth")); } }
-        public SelectList ddlExpireDay { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_ddlExpireDay")); } }
-        public SelectList ddlExpireYear { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_ddlExpireYear")); } }
-        public SelectList ddlHullCoverage { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_ddlHullCoverage")); } }
-        public SelectList rbLimits { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_rbLimits")); } }
-        public SelectList ddlAircraftStatus { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_ddlAircraftStatus")); } }
-    }
-
-    public class CAPersonalInformationPage
-    {
-        private Browser browser;
-        public CAPersonalInformationPage(Browser bro)
-        {
-            browser = bro;
-        }
-
-        public string txtEAANumber { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtEAANumber")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtEAANumber")).Value = value; } }
-        public string txtContactNameFirst { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtContactNameFirst")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtContactNameFirst")).Value = value; } }
-        public string txtContactNameLast { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtContactNameLast")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtContactNameLast")).Value = value; } }
-        public string txtNamedInsured { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtNamedInsured")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtNamedInsured")).Value = value; } }
-        public string txtAddress1 { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtAddress1")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtAddress1")).Value = value; } }
-        public string txtAddress2 { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtAddress2")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtAddress2")).Value = value; } }
-        public string txtCity { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtCity")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtCity")).Value = value; } }
-        public string txtZipCode { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtZipCode")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtZipCode")).Value = value; } }
-        public string txtEmailAddress { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtEmailAddress")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtEmailAddress")).Value = value; } }
-        public string txtDaytimePhone { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtDaytimePhone")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtDaytimePhone")).Value = value; } }
-        public SelectList ddlState { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_ddlState")); } }
-    }
-
-    public class USPersonalInformationPage
-    {
-        private Browser browser;
-        public USPersonalInformationPage(Browser bro)
-        {
-            browser = bro;
-        }
-
-        public string txtEAANumber { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtEAANumber")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtEAANumber")).Value = value; } }
-        public string txtContactNameFirst { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtContactNameFirst")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtContactNameFirst")).Value = value; } }
-        public string txtContactNameMiddle { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtContactNameMiddle")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtContactNameMiddle")).Value = value; } }
-        public string txtContactNameLast { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtContactNameLast")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtContactNameLast")).Value = value; } }
-        public string txtNamedInsured { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtNamedInsured")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtNamedInsured")).Value = value; } }
-        public string txtAddress1 { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtAddress1")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtAddress1")).Value = value; } }
-        public string txtAddress2 { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtAddress2")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtAddress2")).Value = value; } }
-        public string txtCity { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtCity")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtCity")).Value = value; } }
-        public string txtZipCode { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtZipCode")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtZipCode")).Value = value; } }
-        public string txtEmailAddress { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtEmailAddress")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtEmailAddress")).Value = value; } }
-        public string txtDaytimePhone { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtDaytimePhone")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtDaytimePhone")).Value = value; } }
-        public string txtVintageAircraftAssociation { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtVintageAircraftAssociation")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtVintageAircraftAssociation")).Value = value; } }
-        public string txtInternationalAerobaticClub { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtInternationalAerobaticClub")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtInternationalAerobaticClub")).Value = value; } }
-        public string txtWarbirdsofAmerica { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtWarbirdsofAmerica")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtWarbirdsofAmerica")).Value = value; } }
-        public string txtAircraftOwnersPilotsAssociation { get { return browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtAircraftOwnersPilotsAssociation")).Value; } set { browser.TextField(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_txtAircraftOwnersPilotsAssociation")).Value = value; } }
-        public string txtAntiqueAircraft { get { return browser.TextField(Find.ById("txtAntiqueAircraft")).Value; } set { browser.TextField(Find.ById("txtAntiqueAircraft")).Value = value; } }
-        public SelectList ddlState { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_ddlState")); } }
-    }
-
     [TestClass]
     public class UnitTest1
     {
@@ -151,9 +49,22 @@ namespace InsuranceAppWebUI
             a.cbxQuoteFor1 = true;
         }
 
+        private void CAPopulatePilotPage(Browser browser, string tag)
+        {
+            var p = new CAPilotPage(browser);
+            p.txtPilotInfoName = tag;
+            p.txtPilotInfoNameLast = tag;
+            p.txtPilotInfoAge = tag;
+            p.ddlPilotInfoCertificate.Options[2].Select();
+            p.cbxPilotInfoRatings1 = true;
+            p.txtPilotInfoTotalHours = tag;
+            p.txtPilotInfoTotalHoursLast12Mths = tag;
+            p.cbxPilotInfoViolations0 = true;
+            p.txtAdditionalInfo = "txtAdditionalInfo";
+        }
+
         private void USPopulatePersonalInfoPage(Browser browser)
         {
-
             var pi = new USPersonalInformationPage(browser);
             pi.txtEAANumber = "1";
 
@@ -171,6 +82,31 @@ namespace InsuranceAppWebUI
 
             OptionCollection stateOptions = browser.SelectList("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPersonalInformation_ddlState").Options;
             stateOptions[3].Select();
+        }
+
+        private void USPopulatePilotPage(Browser browser, string tag)
+        {
+            var p = new USPilotPage(browser);
+            p.ddlPilotInfoCertificate.Options[2].Select();
+            p.cbxPilotInfoRatings1 = true;
+            p.txtPilotInfoName = tag;
+            p.txtPilotInfoNameMiddle = tag;
+            p.txtPilotInfoNameLast = tag;
+            p.txtPilotInfoOccupation = tag;
+            p.txtPilotInfoAge = tag;
+            p.txtPilotInfoTotalHours = tag;
+            p.txtPilotInfoTotalHoursLast12Mths = tag;
+            p.txtRGHours = tag;
+            p.txtMEHours = tag;
+            p.txtTWHours = tag;
+            p.txtSeaplaneHours = tag;
+            p.txtAmphibianHours = tag;
+            p.txtRWHours = tag;
+            p.txtWSCTrikeHours = tag;
+            p.txtPPCHours = tag;
+            p.txtGliderHours = tag;
+            p.txtGyroHours = tag;
+            p.txtAdditionalInfo = tag;
         }
 
         private void USPopulateAircraftPage(Browser browser, string tag)
@@ -340,7 +276,7 @@ namespace InsuranceAppWebUI
         [TestMethod]
         public void FillCA()
         {
-            using (var browser = new IE("http://dev.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-ca"))
+            using (var browser = new IE("http://qa.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-ca"))
             {
                 browser.AutoClose = false;
                 CAPopulatePersonalInfoPage(browser);
@@ -360,15 +296,34 @@ namespace InsuranceAppWebUI
 
                 CAPopulateAircraftPage(browser, "3");
                 browser.Button(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_AddButton")).Click();
+
+                browser.Button(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_StepNavigationTemplateContainerID_StepNextButton")).Click();
+
+                GenerateCode(browser);
+
+                CAPopulatePilotPage(browser, "1");
+                browser.Button(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_StepNavigationTemplateContainerID_StepNextButton")).Click();
+
+                browser.Link(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPilotList_lnkPilotAdd")).Click();
+
+                CAPopulatePilotPage(browser, "2");
+                browser.Button(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPilot_AddButton")).Click();
+                browser.Link(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPilotList_lnkPilotAdd")).Click();
+
+                CAPopulatePilotPage(browser, "3");
+                browser.Button(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPilot_AddButton")).Click();
+                browser.Button(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_StepNavigationTemplateContainerID_StepNextButton")).Click();
+
+                // browser.Button(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_FinishNavigationTemplateContainerID_FinishButton")).Click();
             }
         }
 
         [TestMethod]
         public void FillUS()
         {
-            using (var browser = new IE("http://dev.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-us"))
+            using (var browser = new IE("http://qa.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-us"))
             {
-                var textElements = browser.ElementsWithTag("input", "text");
+                browser.AutoClose = false;
 
                 USPopulatePersonalInfoPage(browser);
                 browser.Button(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_StartNavigationTemplateContainerID_StartNextButton")).Click();
@@ -387,7 +342,23 @@ namespace InsuranceAppWebUI
 
                 USPopulateAircraftPage(browser, "3");
                 browser.Button(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_AddButton")).Click();
-                browser.AutoClose = false;
+
+                // 
+                browser.Button(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_StepNavigationTemplateContainerID_StepNextButton")).Click();
+
+                USPopulatePilotPage(browser, "1");
+                browser.Button(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_StepNavigationTemplateContainerID_StepNextButton")).Click();
+
+                browser.Link(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPilotList_lnkPilotAdd")).Click();
+                USPopulatePilotPage(browser, "2");
+                browser.Button(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPilot_AddButton")).Click();
+
+                browser.Link(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPilotList_lnkPilotAdd")).Click();
+                USPopulatePilotPage(browser, "3");
+                browser.Button(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xPilot_AddButton")).Click();
+
+                browser.Button(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_StepNavigationTemplateContainerID_StepNextButton")).Click();
+
             }
         }
     }

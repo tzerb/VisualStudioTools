@@ -64,8 +64,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CA\CAAircraftPage.cs" />
+    <Compile Include="CA\CAPersonalInformationPage.cs" />
+    <Compile Include="CA\CAPilotPage.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="US\USPersonalInformationPage.cs" />
+    <Compile Include="US\USPilotPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
