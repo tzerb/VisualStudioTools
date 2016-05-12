@@ -8,7 +8,7 @@ using WatiN.Core;
 namespace InsuranceAppWebUI
 {
     [TestClass]
-    public class UnitTest1
+    public class Insurance
     {
         private void CAPopulatePersonalInfoPage(Browser browser)
         {
@@ -150,7 +150,126 @@ namespace InsuranceAppWebUI
             airportState[3].Select();
         }
 
-        // using (var browser = new FireFox("http://dev.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-us"))
+        private void GenerateCodeOBITS(Browser browser)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            string textTemplate = @"public string {0}"
+                                + @"{{"
+                                + @"    get {{ return browser.TextField(Find.ById(""{1}"")).Value; }}"
+                                + @"    set {{"
+                                + @"        browser.TextField(Find.ById(""{1}"")).Value = value;"
+                                + @"    }}"
+                                + @"}}";
+
+            foreach (var tf in browser.TextFields)
+            {
+                try
+                {
+                    string[] a = tf.Id.Split('_');
+                    string s = string.Format(textTemplate, a[a.Length - 1], tf.Id);
+                    sb.AppendLine(s);
+                }
+                catch (Exception ex)
+                {
+                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                }
+            }
+
+            string checkboxTemplate = @"public bool {0}{1}"
+                                    + @"{{"
+                                    + @"    get {{ return browser.CheckBox(Find.ById(""{2}"")).Checked; }}"
+                                    + @"    set {{"
+                                    + @"        browser.CheckBox(Find.ById(""{2}"")).Checked = value;"
+                                    + @"    }}"
+                                    + @"}}";
+
+            //foreach (var tf in browser.CheckBoxes)
+            //{
+            //    try
+            //    {
+            //        string[] a = tf.Id.Split('_');
+            //        string s = string.Format(checkboxTemplate, a[a.Length - 2], a[a.Length - 1], tf.Id);
+            //        sb.AppendLine(s);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        sb.AppendLine(@"\\ Error processing " + tf.Id);
+            //    }
+            //}
+
+            string selectTemplate = @"public SelectList {0}"
+                                  + @"{{"
+                                  + @"    get {{ return browser.SelectList(Find.ById(""{1}"")); }}"
+                                  + @"}}";
+
+            foreach (var tf in browser.SelectLists)
+            {
+                try
+                {
+                    string[] a = tf.Id.Split('_');
+                    string s = string.Format(selectTemplate, a[a.Length - 1], tf.Id);
+                    sb.AppendLine(s);
+                }
+                catch (Exception ex)
+                {
+                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                }
+            }
+
+            string linkTemplate = @"public Link {0}"
+                                + @"{{"
+                                + @"    get {{ return browser.Link(Find.ById(""{1}"")); }}"
+                                + @"}}";
+            foreach (var tf in browser.Links)
+            {
+                try
+                {
+                    string[] a = tf.Id.Split('_');
+                    string s = string.Format(linkTemplate, a[a.Length - 1], tf.Id);
+                    sb.AppendLine(s);
+                }
+                catch (Exception ex)
+                {
+                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                }
+            }
+
+            string buttonTemplate = @"public Button {0}"
+                                  + @"{{"
+                                  + @"    get {{ return browser.Button(Find.ById(""{1}"")); }}"
+                                  + @"}}"; ;
+            foreach (var tf in browser.Buttons)
+            {
+                try
+                {
+                    string[] a = tf.Id.Split('_');
+                    string s = string.Format(buttonTemplate, a[a.Length - 1], tf.Id);
+                    sb.AppendLine(s);
+                }
+                catch (Exception ex)
+                {
+                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                }
+            }
+
+
+            string radioButtonTemplate = @"";
+            foreach (var tf in browser.RadioButtons)
+            {
+                try
+                {
+                    string[] a = tf.Id.Split('_');
+                    string s = string.Format(radioButtonTemplate, a[a.Length - 1], tf.Id);
+                    sb.AppendLine(s);
+                }
+                catch (Exception)
+                {
+                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                }
+            }
+        }
+
         private void GenerateCode(Browser browser)
         {
             StringBuilder sb = new StringBuilder();
@@ -178,12 +297,12 @@ namespace InsuranceAppWebUI
             }
 
             string checkboxTemplate = @"public bool {0}{1}"
-                                + @"{{"
-                                + @"    get {{ return browser.CheckBox(Find.ById(""{2}"")).Checked; }}"
-                                + @"    set {{"
-                                + @"        browser.CheckBox(Find.ById(""{2}"")).Checked = value;"
-                                + @"    }}"
-                                + @"}}";
+                                    + @"{{"
+                                    + @"    get {{ return browser.CheckBox(Find.ById(""{2}"")).Checked; }}"
+                                    + @"    set {{"
+                                    + @"        browser.CheckBox(Find.ById(""{2}"")).Checked = value;"
+                                    + @"    }}"
+                                    + @"}}";
 
             foreach (var tf in browser.CheckBoxes)
             {
@@ -200,9 +319,10 @@ namespace InsuranceAppWebUI
             }
 
             string selectTemplate = @"public SelectList {0}"
-                                + @"{{"
-                                + @"    get {{ return browser.SelectList(Find.ById(""{1}"")); }}"
-                                + @"}}";
+                                  + @"{{"
+                                  + @"    get {{ return browser.SelectList(Find.ById(""{1}"")); }}"
+                                  + @"}}";
+
             foreach (var tf in browser.SelectLists)
             {
                 try
@@ -217,7 +337,10 @@ namespace InsuranceAppWebUI
                 }
             }
 
-            string linkTemplate = @"";
+            string linkTemplate = @"public Link {0}"
+                                + @"{{"
+                                + @"    get {{ return browser.Link(Find.ById(""{1}"")); }}"
+                                + @"}}";
             foreach (var tf in browser.Links)
             {
                 try
@@ -232,7 +355,10 @@ namespace InsuranceAppWebUI
                 }
             }
 
-            string buttonTemplate = @"";
+            string buttonTemplate = @"public Button {0}"
+                                  + @"{{"
+                                  + @"    get {{ return browser.Button(Find.ById(""{1}"")); }}"
+                                  + @"}}"; ;
             foreach (var tf in browser.Buttons)
             {
                 try
@@ -265,9 +391,19 @@ namespace InsuranceAppWebUI
         }
 
         [TestMethod]
+        public void GenerateOBITS()
+        {
+            using (var browser = new IE("http://dev.eaa.org/apps/airventure/bricks_memorialwall.aspx"))
+            {
+                GenerateCodeOBITS(browser);
+            }
+        }
+
+        [TestMethod]
         public void Generate()
         {
-            using (var browser = new IE("http://dev.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-ca"))
+            // using (var browser = new FireFox("http://dev.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-us"))
+            using (var browser = new IE("http://dev.eaa.org/apps/airventure/bricks_memorialwall.aspx"))
             {
                 GenerateCode(browser);
             }
@@ -276,7 +412,7 @@ namespace InsuranceAppWebUI
         [TestMethod]
         public void FillCA()
         {
-            using (var browser = new IE("http://qa.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-ca"))
+            using (var browser = new IE("http://dev.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-ca"))
             {
                 browser.AutoClose = false;
                 CAPopulatePersonalInfoPage(browser);
@@ -321,7 +457,7 @@ namespace InsuranceAppWebUI
         [TestMethod]
         public void FillUS()
         {
-            using (var browser = new IE("http://qa.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-us"))
+            using (var browser = new IE("http://dev.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-us"))
             {
                 browser.AutoClose = false;
 
