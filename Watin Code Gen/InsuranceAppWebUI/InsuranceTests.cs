@@ -1,4 +1,5 @@
 ﻿using InsuranceAppWebUI.CA;
+using InsuranceAppWebUI.Obits;
 using InsuranceAppWebUI.US;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -8,7 +9,7 @@ using WatiN.Core;
 namespace InsuranceAppWebUI
 {
     [TestClass]
-    public class Insurance
+    public class InsuranceTests
     {
         private void CAPopulatePersonalInfoPage(Browser browser)
         {
@@ -154,6 +155,22 @@ namespace InsuranceAppWebUI
         {
             StringBuilder sb = new StringBuilder();
 
+            string labelTemplate = @"public string {0}Label {{ get {{ return browser.Label(Find.ByFor(""{1}"")).Text; }}  }}";
+
+            foreach (var tf in browser.Labels)
+            {
+                try
+                {
+                    string f = tf.For;
+                    string s = string.Format(labelTemplate, f, f);
+                    sb.AppendLine(s);
+                }
+                catch (Exception ex)
+                {
+                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                }
+            }
+
             string textTemplate = @"public string {0}"
                                 + @"{{"
                                 + @"    get {{ return browser.TextField(Find.ById(""{1}"")).Value; }}"
@@ -213,7 +230,7 @@ namespace InsuranceAppWebUI
                 }
                 catch (Exception ex)
                 {
-                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                    sb.AppendLine(@"// Error processing " + tf.Id);
                 }
             }
 
@@ -231,7 +248,7 @@ namespace InsuranceAppWebUI
                 }
                 catch (Exception ex)
                 {
-                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                    sb.AppendLine(@"// Error processing " + tf.Id);
                 }
             }
 
@@ -249,7 +266,7 @@ namespace InsuranceAppWebUI
                 }
                 catch (Exception ex)
                 {
-                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                    sb.AppendLine(@"// Error processing " + tf.Id);
                 }
             }
 
@@ -265,7 +282,7 @@ namespace InsuranceAppWebUI
                 }
                 catch (Exception)
                 {
-                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                    sb.AppendLine(@"// Error processing " + tf.Id);
                 }
             }
         }
@@ -292,7 +309,7 @@ namespace InsuranceAppWebUI
                 }
                 catch (Exception ex)
                 {
-                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                    sb.AppendLine(@"// Error processing " + tf.Id);
                 }
             }
 
@@ -314,7 +331,7 @@ namespace InsuranceAppWebUI
                 }
                 catch (Exception ex)
                 {
-                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                    sb.AppendLine(@"// Error processing " + tf.Id);
                 }
             }
 
@@ -333,7 +350,7 @@ namespace InsuranceAppWebUI
                 }
                 catch (Exception ex)
                 {
-                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                    sb.AppendLine(@"// Error processing " + tf.Id);
                 }
             }
 
@@ -351,7 +368,7 @@ namespace InsuranceAppWebUI
                 }
                 catch (Exception ex)
                 {
-                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                    sb.AppendLine(@"// Error processing " + tf.Id);
                 }
             }
 
@@ -369,7 +386,7 @@ namespace InsuranceAppWebUI
                 }
                 catch (Exception ex)
                 {
-                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                    sb.AppendLine(@"// Error processing " + tf.Id);
                 }
             }
 
@@ -385,7 +402,7 @@ namespace InsuranceAppWebUI
                 }
                 catch (Exception)
                 {
-                    sb.AppendLine(@"\\ Error processing " + tf.Id);
+                    sb.AppendLine(@"// Error processing " + tf.Id);
                 }
             }
         }
@@ -393,8 +410,12 @@ namespace InsuranceAppWebUI
         [TestMethod]
         public void GenerateOBITS()
         {
-            using (var browser = new IE("http://dev.eaa.org/apps/airventure/bricks_memorialwall.aspx"))
+            //
+            // using (var browser = new IE("http://dev.eaa.org/apps/airventure/bricks_memorialwall.aspx"))
+            using (var browser = new IE("http://dev.eaa.org/en/eaa/apps/obituaries/obituary-add"))
             {
+                // MemorialWall mw = new MemorialWall(browser);
+                // mw.SubmitButton.Click();
                 GenerateCodeOBITS(browser);
             }
         }

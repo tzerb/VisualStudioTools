@@ -7,6 +7,8 @@ using WatiN.Core;
 
 namespace InsuranceAppWebUI.Obits
 {
+    //http://stackoverflow.com/questions/2093290/uploading-file-in-watin
+
     public class MemorialWall
     {
         private Browser browser;
@@ -71,6 +73,26 @@ namespace InsuranceAppWebUI.Obits
         public Button btnU { get { return browser.Button(Find.ById("btnU")); } }
         public Button btnC { get { return browser.Button(Find.ById("btnC")); } }
         public Button SubmitButton { get { return browser.Button(Find.ById("SubmitButton")); } }
+
+        public FileUpload FileUpload { get { return browser.FileUpload(Find.ById("imageUpload")); } }
+
+        public string txtDecFirstNameLabel { get { return browser.Label(Find.ByFor("txtDecFirstName")).Text; } }
+        public string txtDecLastNameLabel { get { return browser.Label(Find.ByFor("txtDecLastName")).Text; } }
+        public string deathDateLabel { get { return browser.Label(Find.ByFor("deathDate")).Text; } }
+        public string BrickInscription01Label { get { return browser.Label(Find.ByFor("BrickInscription01")).Text; } }
+        public string firstNameLabel { get { return browser.Label(Find.ByFor("firstName")).Text; } }
+        public string lastNameLabel { get { return browser.Label(Find.ByFor("lastName")).Text; } }
+        public string addressLabel { get { return browser.Label(Find.ByFor("address")).Text; } }
+        public string cityLabel { get { return browser.Label(Find.ByFor("city")).Text; } }
+        public string ddlStateLabel { get { return browser.Label(Find.ByFor("ddlState")).Text; } }
+        public string zipLabel { get { return browser.Label(Find.ByFor("zip")).Text; } }
+        public string AreaCodeLabel { get { return browser.Label(Find.ByFor("AreaCode")).Text; } }
+        public string PhoneNumberLabel { get { return browser.Label(Find.ByFor("PhoneNumber")).Text; } }
+        public string emailLabel { get { return browser.Label(Find.ByFor("email")).Text; } }
+        public string CreditCardLabel { get { return browser.Label(Find.ByFor("CreditCard")).Text; } }
+        public string ddlCreditCardExpirationMonthLabel { get { return browser.Label(Find.ByFor("ddlCreditCardExpirationMonth")).Text; } }
+        public string ddlCreditCardExpirationYearLabel { get { return browser.Label(Find.ByFor("ddlCreditCardExpirationYear")).Text; } }
+        public string CVCLabel { get { return browser.Label(Find.ByFor("CVC")).Text; } }
     }
 
 

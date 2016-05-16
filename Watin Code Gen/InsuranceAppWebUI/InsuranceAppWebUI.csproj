@@ -35,6 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Interop.SHDocVw, Version=1.1.0.0, Culture=neutral, PublicKeyToken=db7cfd3acb5ad44e, processorArchitecture=MSIL">
       <HintPath>packages\WatiN.2.1.0\lib\net40\Interop.SHDocVw.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -46,6 +54,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
     <Reference Include="WatiN.Core, Version=2.1.0.1196, Culture=neutral, PublicKeyToken=db7cfd3acb5ad44e, processorArchitecture=MSIL">
       <HintPath>packages\WatiN.2.1.0\lib\net40\WatiN.Core.dll</HintPath>
       <Private>True</Private>
@@ -67,15 +80,129 @@
     <Compile Include="CA\CAAircraftPage.cs" />
     <Compile Include="CA\CAPersonalInformationPage.cs" />
     <Compile Include="CA\CAPilotPage.cs" />
-    <Compile Include="Insurance.cs" />
+    <Compile Include="InsuranceTests.cs" />
     <Compile Include="MemorialWallTests.cs" />
+    <Compile Include="Model\Content.cs">
+      <DependentUpon>MemorialWallContentModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GuestBook.cs">
+      <DependentUpon>MemorialWallModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MemorialWallContentModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MemorialWallContentModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MemorialWallContentModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MemorialWallContentModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MemorialWallContentModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MemorialWallContentModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MemorialWallModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MemorialWallModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MemorialWallModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MemorialWallModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MemorialWallModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MemorialWallModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Obituary.cs">
+      <DependentUpon>MemorialWallModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\spGuestBook_SelectOneRecord_Result.cs">
+      <DependentUpon>MemorialWallModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\spGuestBook_SelectRecordApp_Result.cs">
+      <DependentUpon>MemorialWallModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\spGuestBook_SelectRecord_Result.cs">
+      <DependentUpon>MemorialWallModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\spGuestBook_SelectRecord_top4_Result.cs">
+      <DependentUpon>MemorialWallModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\spObituariesGuesBook_SelectApp_Result.cs">
+      <DependentUpon>MemorialWallModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\spObituaries_SelectRecordApprover_Result.cs">
+      <DependentUpon>MemorialWallModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\spObituaries_SelectRecordApp_Result.cs">
+      <DependentUpon>MemorialWallModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\spObituaries_SelectRecord_Result.cs">
+      <DependentUpon>MemorialWallModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\spObituaries_SelectRecord_Top2_Result.cs">
+      <DependentUpon>MemorialWallModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\spObituaries_SelectRecord_Top4_Result.cs">
+      <DependentUpon>MemorialWallModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\spObituaries_SelectWallRecord_Result.cs">
+      <DependentUpon>MemorialWallModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Obits\MemorialWall.cs" />
+    <Compile Include="Obits\ObituaryAdd.cs" />
+    <Compile Include="ObituaryAddTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="US\USPersonalInformationPage.cs" />
     <Compile Include="US\USPilotPage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="Model\MemorialWallModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MemorialWallModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Model\MemorialWallContentModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MemorialWallContentModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\MemorialWallContentModel.edmx.diagram">
+      <DependentUpon>MemorialWallContentModel.edmx</DependentUpon>
+    </None>
+    <None Include="Model\MemorialWallModel.edmx.diagram">
+      <DependentUpon>MemorialWallModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\MemorialWallContentModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MemorialWallContentModel.edmx</DependentUpon>
+      <LastGenOutput>MemorialWallContentModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\MemorialWallContentModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MemorialWallContentModel.edmx</DependentUpon>
+      <LastGenOutput>MemorialWallContentModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\MemorialWallModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MemorialWallModel.edmx</DependentUpon>
+      <LastGenOutput>MemorialWallModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\MemorialWallModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MemorialWallModel.edmx</DependentUpon>
+      <LastGenOutput>MemorialWallModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

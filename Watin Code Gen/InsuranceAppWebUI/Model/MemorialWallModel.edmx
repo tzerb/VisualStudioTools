@@ -1,0 +1,1451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EAA_Memorial_WallModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="GuestBook">
+          <Key>
+            <PropertyRef Name="GuestBookID" />
+          </Key>
+          <Property Name="GuestBookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ObituaryID" Type="int" />
+          <Property Name="DateSubmitted" Type="datetime" />
+          <Property Name="SubmitterName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SubmitterMemberNum" Type="nvarchar" MaxLength="25" />
+          <Property Name="SubmitterComments" Type="ntext" />
+          <Property Name="Approver" Type="nvarchar" MaxLength="25" />
+          <Property Name="Approved" Type="nvarchar" MaxLength="1" />
+          <Property Name="ApprovalDate" Type="datetime" />
+          <Property Name="ApproverComments" Type="ntext" />
+          <Property Name="SignedByDBTeam4EAA" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Obituaries">
+          <Key>
+            <PropertyRef Name="ObitKeyID" />
+          </Key>
+          <Property Name="ObitKeyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DecHonorific" Type="nvarchar" MaxLength="20" />
+          <Property Name="DecFirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DecLastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DecAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="DecAddress2" Type="nvarchar" MaxLength="100" />
+          <Property Name="DecCity" Type="nvarchar" MaxLength="75" />
+          <Property Name="DecState" Type="nvarchar" MaxLength="150" />
+          <Property Name="DecZip" Type="nvarchar" MaxLength="20" />
+          <Property Name="DecMemberNum" Type="nvarchar" MaxLength="25" />
+          <Property Name="DecDateDeath" Type="datetime" />
+          <Property Name="DecDateBirth" Type="datetime" />
+          <Property Name="Obituary" Type="ntext" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="1" />
+          <Property Name="ContactFirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactLastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="ContactAddress2" Type="nvarchar" MaxLength="100" />
+          <Property Name="ContactCity" Type="nvarchar" MaxLength="75" />
+          <Property Name="ContactState" Type="nvarchar" MaxLength="150" />
+          <Property Name="ContactZip" Type="nvarchar" MaxLength="20" />
+          <Property Name="ContactMemberNum" Type="nvarchar" MaxLength="25" />
+          <Property Name="ContactPhoneNum" Type="nvarchar" MaxLength="25" />
+          <Property Name="ContactEmail" Type="nvarchar" MaxLength="150" />
+          <Property Name="DateSubmitted" Type="datetime" />
+          <Property Name="Approver" Type="nvarchar" MaxLength="25" />
+          <Property Name="Approved" Type="nvarchar" MaxLength="1" />
+          <Property Name="ApprovalDate" Type="datetime" />
+          <Property Name="ApproverComments" Type="ntext" />
+          <Property Name="Risk" Type="nvarchar" MaxLength="1" />
+          <Property Name="SpotLight" Type="nvarchar" MaxLength="1" />
+          <Property Name="MemorialWallYear" Type="int" />
+          <Property Name="Engrave" Type="varchar" MaxLength="50" />
+          <Property Name="Engrave2" Type="varchar" MaxLength="50" />
+          <Property Name="DateBirthFormat" Type="varchar" MaxLength="50" />
+          <Property Name="DateDeathFormat" Type="varchar" MaxLength="50" />
+          <Property Name="SignedByDBTeam4EAA" Type="smalldatetime" Nullable="false" />
+          <Property Name="PhotoID" Type="uniqueidentifier" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <Function Name="spGuestBook_DelRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GuestBookID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGuestBook_NewRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ObituaryID" Type="int" Mode="In" />
+          <Parameter Name="DateSubmitted" Type="datetime" Mode="In" />
+          <Parameter Name="SubmitterName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SubmitterMemberNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="SubmitterComments" Type="ntext" Mode="In" />
+          <Parameter Name="Approver" Type="nvarchar" Mode="In" />
+          <Parameter Name="Approved" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApprovalDate" Type="datetime" Mode="In" />
+          <Parameter Name="ApproverComments" Type="ntext" Mode="In" />
+          <Parameter Name="SignedByDBTeam4EAA" Type="nvarchar" Mode="In" />
+          <Parameter Name="RetrunValue" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="spGuestBook_SearchReturns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchStr" Type="nvarchar" Mode="In" />
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+          <Parameter Name="SubmitterName" Type="varchar" Mode="In" />
+          <Parameter Name="decFrom" Type="nvarchar" Mode="In" />
+          <Parameter Name="decTo" Type="nvarchar" Mode="In" />
+          <Parameter Name="keywords" Type="nvarchar" Mode="In" />
+          <Parameter Name="Approved" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spGuestBook_SelectOneRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GuestBookID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGuestBook_SelectRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ObituaryID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGuestBook_SelectRecord_top4" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGuestBook_SelectRecordApp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ObituaryID" Type="int" Mode="In" />
+          <Parameter Name="Approved" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spGuestBook_UpdAllRecords" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GuestBookIDList" Type="nvarchar" Mode="In" />
+          <Parameter Name="Approver" Type="nvarchar" Mode="In" />
+          <Parameter Name="Approved" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApprovalDate" Type="datetime" Mode="In" />
+          <Parameter Name="SignedByDBTeam4EAA" Type="nvarchar" Mode="In" />
+          <Parameter Name="ReturnValue" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="spGuestBook_UpdRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GuestBookID" Type="int" Mode="In" />
+          <Parameter Name="DateSubmitted" Type="datetime" Mode="In" />
+          <Parameter Name="SubmitterName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SubmitterMemberNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="SubmitterComments" Type="ntext" Mode="In" />
+          <Parameter Name="Approver" Type="nvarchar" Mode="In" />
+          <Parameter Name="Approved" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApprovalDate" Type="datetime" Mode="In" />
+          <Parameter Name="ApproverComments" Type="ntext" Mode="In" />
+          <Parameter Name="SignedByDBTeam4EAA" Type="nvarchar" Mode="In" />
+          <Parameter Name="ReturnValue" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="spGuestBook_UpdRecordShort" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GuestBookID" Type="int" Mode="In" />
+          <Parameter Name="DateSubmitted" Type="datetime" Mode="In" />
+          <Parameter Name="SubmitterName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SubmitterMemberNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="SubmitterComments" Type="ntext" Mode="In" />
+          <Parameter Name="Approved" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApproverComments" Type="ntext" Mode="In" />
+          <Parameter Name="SignedByDBTeam4EAA" Type="nvarchar" Mode="In" />
+          <Parameter Name="ReturnValue" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="spObituaries_DeleteRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ObitKeyID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spObituaries_NewRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DecHonorific" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecFirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecLastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecAddress2" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecCity" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecState" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecZip" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecMemberNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecDateDeath" Type="datetime" Mode="In" />
+          <Parameter Name="DecDateBirth" Type="datetime" Mode="In" />
+          <Parameter Name="Obituary" Type="ntext" Mode="In" />
+          <Parameter Name="Photo" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactFirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactLastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactAddress2" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactCity" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactState" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactZip" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactMemberNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactPhoneNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactEmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="DateSubmitted" Type="datetime" Mode="In" />
+          <Parameter Name="Approver" Type="nvarchar" Mode="In" />
+          <Parameter Name="Approved" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApprovalDate" Type="datetime" Mode="In" />
+          <Parameter Name="ApproverComments" Type="ntext" Mode="In" />
+          <Parameter Name="Risk" Type="nvarchar" Mode="In" />
+          <Parameter Name="SpotLight" Type="nvarchar" Mode="In" />
+          <Parameter Name="MemorialWallYear" Type="int" Mode="In" />
+          <Parameter Name="Engrave" Type="varchar" Mode="In" />
+          <Parameter Name="Engrave2" Type="varchar" Mode="In" />
+          <Parameter Name="DateBirthFormat" Type="varchar" Mode="In" />
+          <Parameter Name="DateDeathFormat" Type="varchar" Mode="In" />
+          <Parameter Name="SignedByDBTeam4EAA" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhotoID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="RetrunValue" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="spObituaries_SearchReturns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchStr" Type="nvarchar" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Approved" Type="nvarchar" Mode="In" />
+          <Parameter Name="decFrom" Type="nvarchar" Mode="In" />
+          <Parameter Name="decTo" Type="nvarchar" Mode="In" />
+          <Parameter Name="decInduct" Type="nvarchar" Mode="In" />
+          <Parameter Name="keywords" Type="nvarchar" Mode="In" />
+          <Parameter Name="sortOrder" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spObituaries_SelectRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ObitKeyID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spObituaries_SelectRecord_Top2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spObituaries_SelectRecord_Top4" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spObituaries_SelectRecord_Unapproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spObituaries_SelectRecordApp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ObitKeyID" Type="int" Mode="In" />
+          <Parameter Name="Approved" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spObituaries_SelectRecordApprover" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Approver" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spObituaries_SelectWallRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ObitKeyID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spObituaries_UpdRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ObitKeyID" Type="int" Mode="In" />
+          <Parameter Name="DecHonorific" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecFirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecLastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecAddress2" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecCity" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecState" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecZip" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecMemberNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecDateDeath" Type="datetime" Mode="In" />
+          <Parameter Name="DecDateBirth" Type="datetime" Mode="In" />
+          <Parameter Name="Obituary" Type="ntext" Mode="In" />
+          <Parameter Name="Photo" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactFirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactLastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactAddress2" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactCity" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactState" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactZip" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactMemberNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactPhoneNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactEmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="DateSubmitted" Type="datetime" Mode="In" />
+          <Parameter Name="Approver" Type="nvarchar" Mode="In" />
+          <Parameter Name="Approved" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApprovalDate" Type="datetime" Mode="In" />
+          <Parameter Name="ApproverComments" Type="ntext" Mode="In" />
+          <Parameter Name="Risk" Type="nvarchar" Mode="In" />
+          <Parameter Name="SpotLight" Type="nvarchar" Mode="In" />
+          <Parameter Name="MemorialWallYear" Type="int" Mode="In" />
+          <Parameter Name="Engrave" Type="varchar" Mode="In" />
+          <Parameter Name="Engrave2" Type="varchar" Mode="In" />
+          <Parameter Name="DateBirthFormat" Type="varchar" Mode="In" />
+          <Parameter Name="DateDeathFormat" Type="varchar" Mode="In" />
+          <Parameter Name="SignedByDBTeam4EAA" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhotoID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ReturnValue" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="spObituaries_UpdRecordAppr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ObitKeyID" Type="int" Mode="In" />
+          <Parameter Name="Approver" Type="nvarchar" Mode="In" />
+          <Parameter Name="Approved" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApprovalDate" Type="datetime" Mode="In" />
+          <Parameter Name="SignedByDBTeam4EAA" Type="nvarchar" Mode="In" />
+          <Parameter Name="ReturnValue" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="spObituariesGuesBook_SelectApp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Approver" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spObituariesMemorialWall_NewRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DecHonorific" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecFirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecLastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecAddress2" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecCity" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecState" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecZip" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecMemberNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="DecDateDeath" Type="datetime" Mode="In" />
+          <Parameter Name="DecDateBirth" Type="datetime" Mode="In" />
+          <Parameter Name="Obituary" Type="ntext" Mode="In" />
+          <Parameter Name="Photo" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactFirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactLastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactAddress2" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactCity" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactState" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactZip" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactMemberNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactPhoneNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactEmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="DateSubmitted" Type="datetime" Mode="In" />
+          <Parameter Name="Approver" Type="nvarchar" Mode="In" />
+          <Parameter Name="Approved" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApprovalDate" Type="datetime" Mode="In" />
+          <Parameter Name="ApproverComments" Type="ntext" Mode="In" />
+          <Parameter Name="Risk" Type="nvarchar" Mode="In" />
+          <Parameter Name="SpotLight" Type="nvarchar" Mode="In" />
+          <Parameter Name="MemorialWallYear" Type="int" Mode="In" />
+          <Parameter Name="Engrave" Type="varchar" Mode="In" />
+          <Parameter Name="Engrave2" Type="varchar" Mode="In" />
+          <Parameter Name="DateBirthFormat" Type="varchar" Mode="In" />
+          <Parameter Name="DateDeathFormat" Type="varchar" Mode="In" />
+          <Parameter Name="SignedByDBTeam4EAA" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhotoID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="RetrunValue" Type="int" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="EAA_Memorial_WallModelStoreContainer">
+          <EntitySet Name="GuestBook" EntityType="Self.GuestBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Obituaries" EntityType="Self.Obituaries" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EAA_Memorial_WallModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="GuestBook">
+          <Key>
+            <PropertyRef Name="GuestBookID" />
+          </Key>
+          <Property Name="GuestBookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ObituaryID" Type="Int32" />
+          <Property Name="DateSubmitted" Type="DateTime" Precision="3" />
+          <Property Name="SubmitterName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SubmitterMemberNum" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="SubmitterComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Approver" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Approved" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovalDate" Type="DateTime" Precision="3" />
+          <Property Name="ApproverComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SignedByDBTeam4EAA" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Obituary">
+          <Key>
+            <PropertyRef Name="ObitKeyID" />
+          </Key>
+          <Property Name="ObitKeyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DecHonorific" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DecFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DecLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DecAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DecAddress2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DecCity" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="DecState" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DecZip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DecMemberNum" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="DecDateDeath" Type="DateTime" Precision="3" />
+          <Property Name="DecDateBirth" Type="DateTime" Precision="3" />
+          <Property Name="Obituary1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ContactFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ContactAddress2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ContactCity" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="ContactState" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContactZip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ContactMemberNum" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhoneNum" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ContactEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DateSubmitted" Type="DateTime" Precision="3" />
+          <Property Name="Approver" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Approved" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovalDate" Type="DateTime" Precision="3" />
+          <Property Name="ApproverComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Risk" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="SpotLight" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MemorialWallYear" Type="Int32" />
+          <Property Name="Engrave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Engrave2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateBirthFormat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateDeathFormat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SignedByDBTeam4EAA" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhotoID" Type="Guid" />
+          <Property Name="CountryCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="EAA_Memorial_WallEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GuestBooks" EntityType="Self.GuestBook" />
+          <EntitySet Name="Obituaries" EntityType="Self.Obituary" />
+          <FunctionImport Name="spGuestBook_DelRecord">
+            <Parameter Name="GuestBookID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGuestBook_NewRecord" ReturnType="Collection(Int32)">
+            <Parameter Name="ObituaryID" Mode="In" Type="Int32" />
+            <Parameter Name="DateSubmitted" Mode="In" Type="DateTime" />
+            <Parameter Name="SubmitterName" Mode="In" Type="String" />
+            <Parameter Name="SubmitterMemberNum" Mode="In" Type="String" />
+            <Parameter Name="SubmitterComments" Mode="In" Type="String" />
+            <Parameter Name="Approver" Mode="In" Type="String" />
+            <Parameter Name="Approved" Mode="In" Type="String" />
+            <Parameter Name="ApprovalDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ApproverComments" Mode="In" Type="String" />
+            <Parameter Name="SignedByDBTeam4EAA" Mode="In" Type="String" />
+            <Parameter Name="RetrunValue" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGuestBook_SearchReturns">
+            <Parameter Name="SearchStr" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="SubmitterName" Mode="In" Type="String" />
+            <Parameter Name="decFrom" Mode="In" Type="String" />
+            <Parameter Name="decTo" Mode="In" Type="String" />
+            <Parameter Name="keywords" Mode="In" Type="String" />
+            <Parameter Name="Approved" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGuestBook_SelectOneRecord" ReturnType="Collection(EAA_Memorial_WallModel.spGuestBook_SelectOneRecord_Result)">
+            <Parameter Name="GuestBookID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGuestBook_SelectRecord" ReturnType="Collection(EAA_Memorial_WallModel.spGuestBook_SelectRecord_Result)">
+            <Parameter Name="ObituaryID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGuestBook_SelectRecord_top4" ReturnType="Collection(EAA_Memorial_WallModel.spGuestBook_SelectRecord_top4_Result)" />
+          <FunctionImport Name="spGuestBook_SelectRecordApp" ReturnType="Collection(EAA_Memorial_WallModel.spGuestBook_SelectRecordApp_Result)">
+            <Parameter Name="ObituaryID" Mode="In" Type="Int32" />
+            <Parameter Name="Approved" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGuestBook_UpdAllRecords">
+            <Parameter Name="GuestBookIDList" Mode="In" Type="String" />
+            <Parameter Name="Approver" Mode="In" Type="String" />
+            <Parameter Name="Approved" Mode="In" Type="String" />
+            <Parameter Name="ApprovalDate" Mode="In" Type="DateTime" />
+            <Parameter Name="SignedByDBTeam4EAA" Mode="In" Type="String" />
+            <Parameter Name="ReturnValue" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGuestBook_UpdRecord">
+            <Parameter Name="GuestBookID" Mode="In" Type="Int32" />
+            <Parameter Name="DateSubmitted" Mode="In" Type="DateTime" />
+            <Parameter Name="SubmitterName" Mode="In" Type="String" />
+            <Parameter Name="SubmitterMemberNum" Mode="In" Type="String" />
+            <Parameter Name="SubmitterComments" Mode="In" Type="String" />
+            <Parameter Name="Approver" Mode="In" Type="String" />
+            <Parameter Name="Approved" Mode="In" Type="String" />
+            <Parameter Name="ApprovalDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ApproverComments" Mode="In" Type="String" />
+            <Parameter Name="SignedByDBTeam4EAA" Mode="In" Type="String" />
+            <Parameter Name="ReturnValue" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGuestBook_UpdRecordShort">
+            <Parameter Name="GuestBookID" Mode="In" Type="Int32" />
+            <Parameter Name="DateSubmitted" Mode="In" Type="DateTime" />
+            <Parameter Name="SubmitterName" Mode="In" Type="String" />
+            <Parameter Name="SubmitterMemberNum" Mode="In" Type="String" />
+            <Parameter Name="SubmitterComments" Mode="In" Type="String" />
+            <Parameter Name="Approved" Mode="In" Type="String" />
+            <Parameter Name="ApproverComments" Mode="In" Type="String" />
+            <Parameter Name="SignedByDBTeam4EAA" Mode="In" Type="String" />
+            <Parameter Name="ReturnValue" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spObituaries_DeleteRecord">
+            <Parameter Name="ObitKeyID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spObituaries_NewRecord" ReturnType="Collection(Int32)">
+            <Parameter Name="DecHonorific" Mode="In" Type="String" />
+            <Parameter Name="DecFirstName" Mode="In" Type="String" />
+            <Parameter Name="DecLastName" Mode="In" Type="String" />
+            <Parameter Name="DecAddress" Mode="In" Type="String" />
+            <Parameter Name="DecAddress2" Mode="In" Type="String" />
+            <Parameter Name="DecCity" Mode="In" Type="String" />
+            <Parameter Name="DecState" Mode="In" Type="String" />
+            <Parameter Name="DecZip" Mode="In" Type="String" />
+            <Parameter Name="DecMemberNum" Mode="In" Type="String" />
+            <Parameter Name="DecDateDeath" Mode="In" Type="DateTime" />
+            <Parameter Name="DecDateBirth" Mode="In" Type="DateTime" />
+            <Parameter Name="Obituary" Mode="In" Type="String" />
+            <Parameter Name="Photo" Mode="In" Type="String" />
+            <Parameter Name="ContactFirstName" Mode="In" Type="String" />
+            <Parameter Name="ContactLastName" Mode="In" Type="String" />
+            <Parameter Name="ContactAddress" Mode="In" Type="String" />
+            <Parameter Name="ContactAddress2" Mode="In" Type="String" />
+            <Parameter Name="ContactCity" Mode="In" Type="String" />
+            <Parameter Name="ContactState" Mode="In" Type="String" />
+            <Parameter Name="ContactZip" Mode="In" Type="String" />
+            <Parameter Name="ContactMemberNum" Mode="In" Type="String" />
+            <Parameter Name="ContactPhoneNum" Mode="In" Type="String" />
+            <Parameter Name="ContactEmail" Mode="In" Type="String" />
+            <Parameter Name="DateSubmitted" Mode="In" Type="DateTime" />
+            <Parameter Name="Approver" Mode="In" Type="String" />
+            <Parameter Name="Approved" Mode="In" Type="String" />
+            <Parameter Name="ApprovalDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ApproverComments" Mode="In" Type="String" />
+            <Parameter Name="Risk" Mode="In" Type="String" />
+            <Parameter Name="SpotLight" Mode="In" Type="String" />
+            <Parameter Name="MemorialWallYear" Mode="In" Type="Int32" />
+            <Parameter Name="Engrave" Mode="In" Type="String" />
+            <Parameter Name="Engrave2" Mode="In" Type="String" />
+            <Parameter Name="DateBirthFormat" Mode="In" Type="String" />
+            <Parameter Name="DateDeathFormat" Mode="In" Type="String" />
+            <Parameter Name="SignedByDBTeam4EAA" Mode="In" Type="String" />
+            <Parameter Name="PhotoID" Mode="In" Type="Guid" />
+            <Parameter Name="RetrunValue" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spObituaries_SearchReturns">
+            <Parameter Name="SearchStr" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Approved" Mode="In" Type="String" />
+            <Parameter Name="decFrom" Mode="In" Type="String" />
+            <Parameter Name="decTo" Mode="In" Type="String" />
+            <Parameter Name="decInduct" Mode="In" Type="String" />
+            <Parameter Name="keywords" Mode="In" Type="String" />
+            <Parameter Name="sortOrder" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spObituaries_SelectRecord" ReturnType="Collection(EAA_Memorial_WallModel.spObituaries_SelectRecord_Result)">
+            <Parameter Name="ObitKeyID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spObituaries_SelectRecord_Top2" ReturnType="Collection(EAA_Memorial_WallModel.spObituaries_SelectRecord_Top2_Result)" />
+          <FunctionImport Name="spObituaries_SelectRecord_Top4" ReturnType="Collection(EAA_Memorial_WallModel.spObituaries_SelectRecord_Top4_Result)" />
+          <FunctionImport Name="spObituaries_SelectRecord_Unapproved" ReturnType="Collection(String)" />
+          <FunctionImport Name="spObituaries_SelectRecordApp" ReturnType="Collection(EAA_Memorial_WallModel.spObituaries_SelectRecordApp_Result)">
+            <Parameter Name="ObitKeyID" Mode="In" Type="Int32" />
+            <Parameter Name="Approved" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spObituaries_SelectRecordApprover" ReturnType="Collection(EAA_Memorial_WallModel.spObituaries_SelectRecordApprover_Result)">
+            <Parameter Name="Approver" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spObituaries_SelectWallRecord" ReturnType="Collection(EAA_Memorial_WallModel.spObituaries_SelectWallRecord_Result)">
+            <Parameter Name="ObitKeyID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spObituaries_UpdRecord">
+            <Parameter Name="ObitKeyID" Mode="In" Type="Int32" />
+            <Parameter Name="DecHonorific" Mode="In" Type="String" />
+            <Parameter Name="DecFirstName" Mode="In" Type="String" />
+            <Parameter Name="DecLastName" Mode="In" Type="String" />
+            <Parameter Name="DecAddress" Mode="In" Type="String" />
+            <Parameter Name="DecAddress2" Mode="In" Type="String" />
+            <Parameter Name="DecCity" Mode="In" Type="String" />
+            <Parameter Name="DecState" Mode="In" Type="String" />
+            <Parameter Name="DecZip" Mode="In" Type="String" />
+            <Parameter Name="DecMemberNum" Mode="In" Type="String" />
+            <Parameter Name="DecDateDeath" Mode="In" Type="DateTime" />
+            <Parameter Name="DecDateBirth" Mode="In" Type="DateTime" />
+            <Parameter Name="Obituary" Mode="In" Type="String" />
+            <Parameter Name="Photo" Mode="In" Type="String" />
+            <Parameter Name="ContactFirstName" Mode="In" Type="String" />
+            <Parameter Name="ContactLastName" Mode="In" Type="String" />
+            <Parameter Name="ContactAddress" Mode="In" Type="String" />
+            <Parameter Name="ContactAddress2" Mode="In" Type="String" />
+            <Parameter Name="ContactCity" Mode="In" Type="String" />
+            <Parameter Name="ContactState" Mode="In" Type="String" />
+            <Parameter Name="ContactZip" Mode="In" Type="String" />
+            <Parameter Name="ContactMemberNum" Mode="In" Type="String" />
+            <Parameter Name="ContactPhoneNum" Mode="In" Type="String" />
+            <Parameter Name="ContactEmail" Mode="In" Type="String" />
+            <Parameter Name="DateSubmitted" Mode="In" Type="DateTime" />
+            <Parameter Name="Approver" Mode="In" Type="String" />
+            <Parameter Name="Approved" Mode="In" Type="String" />
+            <Parameter Name="ApprovalDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ApproverComments" Mode="In" Type="String" />
+            <Parameter Name="Risk" Mode="In" Type="String" />
+            <Parameter Name="SpotLight" Mode="In" Type="String" />
+            <Parameter Name="MemorialWallYear" Mode="In" Type="Int32" />
+            <Parameter Name="Engrave" Mode="In" Type="String" />
+            <Parameter Name="Engrave2" Mode="In" Type="String" />
+            <Parameter Name="DateBirthFormat" Mode="In" Type="String" />
+            <Parameter Name="DateDeathFormat" Mode="In" Type="String" />
+            <Parameter Name="SignedByDBTeam4EAA" Mode="In" Type="String" />
+            <Parameter Name="PhotoID" Mode="In" Type="Guid" />
+            <Parameter Name="ReturnValue" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spObituaries_UpdRecordAppr">
+            <Parameter Name="ObitKeyID" Mode="In" Type="Int32" />
+            <Parameter Name="Approver" Mode="In" Type="String" />
+            <Parameter Name="Approved" Mode="In" Type="String" />
+            <Parameter Name="ApprovalDate" Mode="In" Type="DateTime" />
+            <Parameter Name="SignedByDBTeam4EAA" Mode="In" Type="String" />
+            <Parameter Name="ReturnValue" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spObituariesGuesBook_SelectApp" ReturnType="Collection(EAA_Memorial_WallModel.spObituariesGuesBook_SelectApp_Result)">
+            <Parameter Name="Approver" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spObituariesMemorialWall_NewRecord" ReturnType="Collection(Int32)">
+            <Parameter Name="DecHonorific" Mode="In" Type="String" />
+            <Parameter Name="DecFirstName" Mode="In" Type="String" />
+            <Parameter Name="DecLastName" Mode="In" Type="String" />
+            <Parameter Name="DecAddress" Mode="In" Type="String" />
+            <Parameter Name="DecAddress2" Mode="In" Type="String" />
+            <Parameter Name="DecCity" Mode="In" Type="String" />
+            <Parameter Name="DecState" Mode="In" Type="String" />
+            <Parameter Name="DecZip" Mode="In" Type="String" />
+            <Parameter Name="DecMemberNum" Mode="In" Type="String" />
+            <Parameter Name="DecDateDeath" Mode="In" Type="DateTime" />
+            <Parameter Name="DecDateBirth" Mode="In" Type="DateTime" />
+            <Parameter Name="Obituary" Mode="In" Type="String" />
+            <Parameter Name="Photo" Mode="In" Type="String" />
+            <Parameter Name="ContactFirstName" Mode="In" Type="String" />
+            <Parameter Name="ContactLastName" Mode="In" Type="String" />
+            <Parameter Name="ContactAddress" Mode="In" Type="String" />
+            <Parameter Name="ContactAddress2" Mode="In" Type="String" />
+            <Parameter Name="ContactCity" Mode="In" Type="String" />
+            <Parameter Name="ContactState" Mode="In" Type="String" />
+            <Parameter Name="ContactZip" Mode="In" Type="String" />
+            <Parameter Name="ContactMemberNum" Mode="In" Type="String" />
+            <Parameter Name="ContactPhoneNum" Mode="In" Type="String" />
+            <Parameter Name="ContactEmail" Mode="In" Type="String" />
+            <Parameter Name="DateSubmitted" Mode="In" Type="DateTime" />
+            <Parameter Name="Approver" Mode="In" Type="String" />
+            <Parameter Name="Approved" Mode="In" Type="String" />
+            <Parameter Name="ApprovalDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ApproverComments" Mode="In" Type="String" />
+            <Parameter Name="Risk" Mode="In" Type="String" />
+            <Parameter Name="SpotLight" Mode="In" Type="String" />
+            <Parameter Name="MemorialWallYear" Mode="In" Type="Int32" />
+            <Parameter Name="Engrave" Mode="In" Type="String" />
+            <Parameter Name="Engrave2" Mode="In" Type="String" />
+            <Parameter Name="DateBirthFormat" Mode="In" Type="String" />
+            <Parameter Name="DateDeathFormat" Mode="In" Type="String" />
+            <Parameter Name="SignedByDBTeam4EAA" Mode="In" Type="String" />
+            <Parameter Name="PhotoID" Mode="In" Type="Guid" />
+            <Parameter Name="RetrunValue" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spGuestBook_SelectOneRecord_Result">
+          <Property Type="Int32" Name="GuestBookID" Nullable="false" />
+          <Property Type="Int32" Name="ObituaryID" Nullable="true" />
+          <Property Type="DateTime" Name="DateSubmitted" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SubmitterName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SubmitterMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="SubmitterComments" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Approver" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="ApprovalDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApproverComments" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="SignedByDBTeam4EAA" Nullable="false" Precision="16" />
+        </ComplexType>
+        <ComplexType Name="spGuestBook_SelectRecord_Result">
+          <Property Type="Int32" Name="GuestBookID" Nullable="false" />
+          <Property Type="Int32" Name="ObituaryID" Nullable="true" />
+          <Property Type="DateTime" Name="DateSubmitted" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SubmitterName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SubmitterMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="SubmitterComments" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Approver" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="ApprovalDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApproverComments" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="SignedByDBTeam4EAA" Nullable="false" Precision="16" />
+        </ComplexType>
+        <ComplexType Name="spGuestBook_SelectRecord_top4_Result">
+          <Property Type="Int32" Name="GuestBookID" Nullable="false" />
+          <Property Type="Int32" Name="ObituaryID" Nullable="true" />
+          <Property Type="DateTime" Name="DateSubmitted" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SubmitterName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SubmitterMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="SubmitterComments" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Approver" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="ApprovalDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApproverComments" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="SignedByDBTeam4EAA" Nullable="false" Precision="16" />
+        </ComplexType>
+        <ComplexType Name="spGuestBook_SelectRecordApp_Result">
+          <Property Type="Int32" Name="GuestBookID" Nullable="false" />
+          <Property Type="Int32" Name="ObituaryID" Nullable="true" />
+          <Property Type="DateTime" Name="DateSubmitted" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SubmitterName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SubmitterMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="SubmitterComments" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Approver" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="ApprovalDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApproverComments" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="SignedByDBTeam4EAA" Nullable="false" Precision="16" />
+        </ComplexType>
+        <ComplexType Name="spObituaries_SelectRecord_Result">
+          <Property Type="Int32" Name="ObitKeyID" Nullable="false" />
+          <Property Type="String" Name="DecHonorific" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DecFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DecLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DecAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DecAddress2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DecCity" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="DecState" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DecZip" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DecMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="DateTime" Name="DecDateDeath" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DecDateBirth" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Obituary" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Photo" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ContactFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactAddress2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactCity" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="ContactState" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ContactZip" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ContactMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ContactPhoneNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ContactEmail" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="DateSubmitted" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Approver" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="ApprovalDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApproverComments" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Risk" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="SpotLight" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="MemorialWallYear" Nullable="true" />
+          <Property Type="String" Name="Engrave" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Engrave2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DateBirthFormat" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DateDeathFormat" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="SignedByDBTeam4EAA" Nullable="false" Precision="16" />
+          <Property Type="Guid" Name="PhotoID" Nullable="true" />
+          <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="5" />
+        </ComplexType>
+        <ComplexType Name="spObituaries_SelectRecord_Top2_Result">
+          <Property Type="Int32" Name="ObitKeyID" Nullable="false" />
+          <Property Type="String" Name="DecHonorific" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DecFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DecLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DecAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DecAddress2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DecCity" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="DecState" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DecZip" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DecMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="DateTime" Name="DecDateDeath" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DecDateBirth" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Obituary" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Photo" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ContactFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactAddress2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactCity" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="ContactState" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ContactZip" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ContactMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ContactPhoneNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ContactEmail" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="DateSubmitted" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Approver" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="ApprovalDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApproverComments" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Risk" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="SpotLight" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="MemorialWallYear" Nullable="true" />
+          <Property Type="String" Name="Engrave" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Engrave2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DateBirthFormat" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DateDeathFormat" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="SignedByDBTeam4EAA" Nullable="false" Precision="16" />
+          <Property Type="Guid" Name="PhotoID" Nullable="true" />
+          <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="5" />
+        </ComplexType>
+        <ComplexType Name="spObituaries_SelectRecord_Top4_Result">
+          <Property Type="Int32" Name="ObitKeyID" Nullable="false" />
+          <Property Type="String" Name="DecHonorific" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DecFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DecLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DecAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DecAddress2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DecCity" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="DecState" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DecZip" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DecMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="DateTime" Name="DecDateDeath" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DecDateBirth" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Obituary" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Photo" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ContactFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactAddress2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactCity" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="ContactState" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ContactZip" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ContactMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ContactPhoneNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ContactEmail" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="DateSubmitted" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Approver" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="ApprovalDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApproverComments" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Risk" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="SpotLight" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="MemorialWallYear" Nullable="true" />
+          <Property Type="String" Name="Engrave" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Engrave2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DateBirthFormat" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DateDeathFormat" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="SignedByDBTeam4EAA" Nullable="false" Precision="16" />
+          <Property Type="Guid" Name="PhotoID" Nullable="true" />
+          <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="5" />
+        </ComplexType>
+        <ComplexType Name="spObituaries_SelectRecordApp_Result">
+          <Property Type="Int32" Name="ObitKeyID" Nullable="false" />
+          <Property Type="String" Name="DecHonorific" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DecFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DecLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DecAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DecAddress2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DecCity" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="DecState" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DecZip" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DecMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="DateTime" Name="DecDateDeath" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DecDateBirth" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Obituary" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Photo" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ContactFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactAddress2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactCity" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="ContactState" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ContactZip" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ContactMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ContactPhoneNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ContactEmail" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="DateSubmitted" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Approver" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="ApprovalDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApproverComments" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Risk" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="SpotLight" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="MemorialWallYear" Nullable="true" />
+          <Property Type="String" Name="Engrave" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Engrave2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DateBirthFormat" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DateDeathFormat" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="SignedByDBTeam4EAA" Nullable="false" Precision="16" />
+          <Property Type="Guid" Name="PhotoID" Nullable="true" />
+          <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="5" />
+        </ComplexType>
+        <ComplexType Name="spObituaries_SelectRecordApprover_Result">
+          <Property Type="Int32" Name="ObitKeyID" Nullable="false" />
+          <Property Type="String" Name="DecHonorific" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DecFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DecLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DecAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DecAddress2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DecCity" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="DecState" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DecZip" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DecMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="DateTime" Name="DecDateDeath" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DecDateBirth" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Obituary" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Photo" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ContactFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactAddress2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactCity" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="ContactState" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ContactZip" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ContactMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ContactPhoneNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ContactEmail" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="DateSubmitted" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Approver" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="ApprovalDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApproverComments" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Risk" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="SpotLight" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="MemorialWallYear" Nullable="true" />
+          <Property Type="String" Name="Engrave" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Engrave2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DateBirthFormat" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DateDeathFormat" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="SignedByDBTeam4EAA" Nullable="false" Precision="16" />
+          <Property Type="Guid" Name="PhotoID" Nullable="true" />
+          <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="5" />
+        </ComplexType>
+        <ComplexType Name="spObituaries_SelectWallRecord_Result">
+          <Property Type="Int32" Name="ObitKeyID" Nullable="false" />
+          <Property Type="String" Name="DecHonorific" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DecFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DecLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DecAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DecAddress2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DecCity" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="DecState" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DecZip" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DecMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="DateTime" Name="DecDateDeath" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DecDateBirth" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Obituary" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Photo" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ContactFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactAddress2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactCity" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="ContactState" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ContactZip" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ContactMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ContactPhoneNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ContactEmail" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="DateSubmitted" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Approver" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="ApprovalDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApproverComments" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Risk" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="SpotLight" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="MemorialWallYear" Nullable="true" />
+          <Property Type="String" Name="Engrave" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Engrave2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DateBirthFormat" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DateDeathFormat" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="SignedByDBTeam4EAA" Nullable="false" Precision="16" />
+          <Property Type="Guid" Name="PhotoID" Nullable="true" />
+          <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="5" />
+        </ComplexType>
+        <ComplexType Name="spObituariesGuesBook_SelectApp_Result">
+          <Property Type="Int32" Name="GuestBookID" Nullable="false" />
+          <Property Type="Int32" Name="ObituaryID" Nullable="true" />
+          <Property Type="DateTime" Name="DateSubmitted" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SubmitterName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SubmitterMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="SubmitterComments" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Approver" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Approved" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="ApprovalDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApproverComments" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="SignedByDBTeam4EAA" Nullable="false" Precision="16" />
+          <Property Type="Int32" Name="ObitKeyID" Nullable="true" />
+          <Property Type="String" Name="DecHonorific" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DecFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DecLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DecAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DecAddress2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DecCity" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="DecState" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DecZip" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DecMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="DateTime" Name="DecDateDeath" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DecDateBirth" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Obituary" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Photo" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ContactFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactLastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactAddress2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactCity" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="ContactState" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ContactZip" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ContactMemberNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ContactPhoneNum" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ContactEmail" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="DateSubmitted1" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Approver1" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Approved1" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="ApprovalDate1" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApproverComments1" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Risk" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="SpotLight" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="MemorialWallYear" Nullable="true" />
+          <Property Type="String" Name="Engrave" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Engrave2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DateBirthFormat" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DateDeathFormat" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="SignedByDBTeam4EAA1" Nullable="true" Precision="16" />
+          <Property Type="Guid" Name="PhotoID" Nullable="true" />
+          <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="5" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EAA_Memorial_WallModelStoreContainer" CdmEntityContainer="EAA_Memorial_WallEntities">
+          <EntitySetMapping Name="GuestBooks">
+            <EntityTypeMapping TypeName="EAA_Memorial_WallModel.GuestBook">
+              <MappingFragment StoreEntitySet="GuestBook">
+                <ScalarProperty Name="GuestBookID" ColumnName="GuestBookID" />
+                <ScalarProperty Name="ObituaryID" ColumnName="ObituaryID" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="SubmitterName" ColumnName="SubmitterName" />
+                <ScalarProperty Name="SubmitterMemberNum" ColumnName="SubmitterMemberNum" />
+                <ScalarProperty Name="SubmitterComments" ColumnName="SubmitterComments" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="ApproverComments" ColumnName="ApproverComments" />
+                <ScalarProperty Name="SignedByDBTeam4EAA" ColumnName="SignedByDBTeam4EAA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Obituaries">
+            <EntityTypeMapping TypeName="EAA_Memorial_WallModel.Obituary">
+              <MappingFragment StoreEntitySet="Obituaries">
+                <ScalarProperty Name="ObitKeyID" ColumnName="ObitKeyID" />
+                <ScalarProperty Name="DecHonorific" ColumnName="DecHonorific" />
+                <ScalarProperty Name="DecFirstName" ColumnName="DecFirstName" />
+                <ScalarProperty Name="DecLastName" ColumnName="DecLastName" />
+                <ScalarProperty Name="DecAddress" ColumnName="DecAddress" />
+                <ScalarProperty Name="DecAddress2" ColumnName="DecAddress2" />
+                <ScalarProperty Name="DecCity" ColumnName="DecCity" />
+                <ScalarProperty Name="DecState" ColumnName="DecState" />
+                <ScalarProperty Name="DecZip" ColumnName="DecZip" />
+                <ScalarProperty Name="DecMemberNum" ColumnName="DecMemberNum" />
+                <ScalarProperty Name="DecDateDeath" ColumnName="DecDateDeath" />
+                <ScalarProperty Name="DecDateBirth" ColumnName="DecDateBirth" />
+                <ScalarProperty Name="Obituary1" ColumnName="Obituary" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+                <ScalarProperty Name="ContactAddress2" ColumnName="ContactAddress2" />
+                <ScalarProperty Name="ContactCity" ColumnName="ContactCity" />
+                <ScalarProperty Name="ContactState" ColumnName="ContactState" />
+                <ScalarProperty Name="ContactZip" ColumnName="ContactZip" />
+                <ScalarProperty Name="ContactMemberNum" ColumnName="ContactMemberNum" />
+                <ScalarProperty Name="ContactPhoneNum" ColumnName="ContactPhoneNum" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="ApproverComments" ColumnName="ApproverComments" />
+                <ScalarProperty Name="Risk" ColumnName="Risk" />
+                <ScalarProperty Name="SpotLight" ColumnName="SpotLight" />
+                <ScalarProperty Name="MemorialWallYear" ColumnName="MemorialWallYear" />
+                <ScalarProperty Name="Engrave" ColumnName="Engrave" />
+                <ScalarProperty Name="Engrave2" ColumnName="Engrave2" />
+                <ScalarProperty Name="DateBirthFormat" ColumnName="DateBirthFormat" />
+                <ScalarProperty Name="DateDeathFormat" ColumnName="DateDeathFormat" />
+                <ScalarProperty Name="SignedByDBTeam4EAA" ColumnName="SignedByDBTeam4EAA" />
+                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGuestBook_DelRecord" FunctionName="EAA_Memorial_WallModel.Store.spGuestBook_DelRecord" />
+          <FunctionImportMapping FunctionImportName="spGuestBook_NewRecord" FunctionName="EAA_Memorial_WallModel.Store.spGuestBook_NewRecord" />
+          <FunctionImportMapping FunctionImportName="spGuestBook_SearchReturns" FunctionName="EAA_Memorial_WallModel.Store.spGuestBook_SearchReturns" />
+          <FunctionImportMapping FunctionImportName="spGuestBook_SelectOneRecord" FunctionName="EAA_Memorial_WallModel.Store.spGuestBook_SelectOneRecord">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EAA_Memorial_WallModel.spGuestBook_SelectOneRecord_Result">
+                <ScalarProperty Name="GuestBookID" ColumnName="GuestBookID" />
+                <ScalarProperty Name="ObituaryID" ColumnName="ObituaryID" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="SubmitterName" ColumnName="SubmitterName" />
+                <ScalarProperty Name="SubmitterMemberNum" ColumnName="SubmitterMemberNum" />
+                <ScalarProperty Name="SubmitterComments" ColumnName="SubmitterComments" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="ApproverComments" ColumnName="ApproverComments" />
+                <ScalarProperty Name="SignedByDBTeam4EAA" ColumnName="SignedByDBTeam4EAA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGuestBook_SelectRecord" FunctionName="EAA_Memorial_WallModel.Store.spGuestBook_SelectRecord">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EAA_Memorial_WallModel.spGuestBook_SelectRecord_Result">
+                <ScalarProperty Name="GuestBookID" ColumnName="GuestBookID" />
+                <ScalarProperty Name="ObituaryID" ColumnName="ObituaryID" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="SubmitterName" ColumnName="SubmitterName" />
+                <ScalarProperty Name="SubmitterMemberNum" ColumnName="SubmitterMemberNum" />
+                <ScalarProperty Name="SubmitterComments" ColumnName="SubmitterComments" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="ApproverComments" ColumnName="ApproverComments" />
+                <ScalarProperty Name="SignedByDBTeam4EAA" ColumnName="SignedByDBTeam4EAA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGuestBook_SelectRecord_top4" FunctionName="EAA_Memorial_WallModel.Store.spGuestBook_SelectRecord_top4">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EAA_Memorial_WallModel.spGuestBook_SelectRecord_top4_Result">
+                <ScalarProperty Name="GuestBookID" ColumnName="GuestBookID" />
+                <ScalarProperty Name="ObituaryID" ColumnName="ObituaryID" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="SubmitterName" ColumnName="SubmitterName" />
+                <ScalarProperty Name="SubmitterMemberNum" ColumnName="SubmitterMemberNum" />
+                <ScalarProperty Name="SubmitterComments" ColumnName="SubmitterComments" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="ApproverComments" ColumnName="ApproverComments" />
+                <ScalarProperty Name="SignedByDBTeam4EAA" ColumnName="SignedByDBTeam4EAA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGuestBook_SelectRecordApp" FunctionName="EAA_Memorial_WallModel.Store.spGuestBook_SelectRecordApp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EAA_Memorial_WallModel.spGuestBook_SelectRecordApp_Result">
+                <ScalarProperty Name="GuestBookID" ColumnName="GuestBookID" />
+                <ScalarProperty Name="ObituaryID" ColumnName="ObituaryID" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="SubmitterName" ColumnName="SubmitterName" />
+                <ScalarProperty Name="SubmitterMemberNum" ColumnName="SubmitterMemberNum" />
+                <ScalarProperty Name="SubmitterComments" ColumnName="SubmitterComments" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="ApproverComments" ColumnName="ApproverComments" />
+                <ScalarProperty Name="SignedByDBTeam4EAA" ColumnName="SignedByDBTeam4EAA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGuestBook_UpdAllRecords" FunctionName="EAA_Memorial_WallModel.Store.spGuestBook_UpdAllRecords" />
+          <FunctionImportMapping FunctionImportName="spGuestBook_UpdRecord" FunctionName="EAA_Memorial_WallModel.Store.spGuestBook_UpdRecord" />
+          <FunctionImportMapping FunctionImportName="spGuestBook_UpdRecordShort" FunctionName="EAA_Memorial_WallModel.Store.spGuestBook_UpdRecordShort" />
+          <FunctionImportMapping FunctionImportName="spObituaries_DeleteRecord" FunctionName="EAA_Memorial_WallModel.Store.spObituaries_DeleteRecord" />
+          <FunctionImportMapping FunctionImportName="spObituaries_NewRecord" FunctionName="EAA_Memorial_WallModel.Store.spObituaries_NewRecord" />
+          <FunctionImportMapping FunctionImportName="spObituaries_SearchReturns" FunctionName="EAA_Memorial_WallModel.Store.spObituaries_SearchReturns" />
+          <FunctionImportMapping FunctionImportName="spObituaries_SelectRecord" FunctionName="EAA_Memorial_WallModel.Store.spObituaries_SelectRecord">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EAA_Memorial_WallModel.spObituaries_SelectRecord_Result">
+                <ScalarProperty Name="ObitKeyID" ColumnName="ObitKeyID" />
+                <ScalarProperty Name="DecHonorific" ColumnName="DecHonorific" />
+                <ScalarProperty Name="DecFirstName" ColumnName="DecFirstName" />
+                <ScalarProperty Name="DecLastName" ColumnName="DecLastName" />
+                <ScalarProperty Name="DecAddress" ColumnName="DecAddress" />
+                <ScalarProperty Name="DecAddress2" ColumnName="DecAddress2" />
+                <ScalarProperty Name="DecCity" ColumnName="DecCity" />
+                <ScalarProperty Name="DecState" ColumnName="DecState" />
+                <ScalarProperty Name="DecZip" ColumnName="DecZip" />
+                <ScalarProperty Name="DecMemberNum" ColumnName="DecMemberNum" />
+                <ScalarProperty Name="DecDateDeath" ColumnName="DecDateDeath" />
+                <ScalarProperty Name="DecDateBirth" ColumnName="DecDateBirth" />
+                <ScalarProperty Name="Obituary" ColumnName="Obituary" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+                <ScalarProperty Name="ContactAddress2" ColumnName="ContactAddress2" />
+                <ScalarProperty Name="ContactCity" ColumnName="ContactCity" />
+                <ScalarProperty Name="ContactState" ColumnName="ContactState" />
+                <ScalarProperty Name="ContactZip" ColumnName="ContactZip" />
+                <ScalarProperty Name="ContactMemberNum" ColumnName="ContactMemberNum" />
+                <ScalarProperty Name="ContactPhoneNum" ColumnName="ContactPhoneNum" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="ApproverComments" ColumnName="ApproverComments" />
+                <ScalarProperty Name="Risk" ColumnName="Risk" />
+                <ScalarProperty Name="SpotLight" ColumnName="SpotLight" />
+                <ScalarProperty Name="MemorialWallYear" ColumnName="MemorialWallYear" />
+                <ScalarProperty Name="Engrave" ColumnName="Engrave" />
+                <ScalarProperty Name="Engrave2" ColumnName="Engrave2" />
+                <ScalarProperty Name="DateBirthFormat" ColumnName="DateBirthFormat" />
+                <ScalarProperty Name="DateDeathFormat" ColumnName="DateDeathFormat" />
+                <ScalarProperty Name="SignedByDBTeam4EAA" ColumnName="SignedByDBTeam4EAA" />
+                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spObituaries_SelectRecord_Top2" FunctionName="EAA_Memorial_WallModel.Store.spObituaries_SelectRecord_Top2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EAA_Memorial_WallModel.spObituaries_SelectRecord_Top2_Result">
+                <ScalarProperty Name="ObitKeyID" ColumnName="ObitKeyID" />
+                <ScalarProperty Name="DecHonorific" ColumnName="DecHonorific" />
+                <ScalarProperty Name="DecFirstName" ColumnName="DecFirstName" />
+                <ScalarProperty Name="DecLastName" ColumnName="DecLastName" />
+                <ScalarProperty Name="DecAddress" ColumnName="DecAddress" />
+                <ScalarProperty Name="DecAddress2" ColumnName="DecAddress2" />
+                <ScalarProperty Name="DecCity" ColumnName="DecCity" />
+                <ScalarProperty Name="DecState" ColumnName="DecState" />
+                <ScalarProperty Name="DecZip" ColumnName="DecZip" />
+                <ScalarProperty Name="DecMemberNum" ColumnName="DecMemberNum" />
+                <ScalarProperty Name="DecDateDeath" ColumnName="DecDateDeath" />
+                <ScalarProperty Name="DecDateBirth" ColumnName="DecDateBirth" />
+                <ScalarProperty Name="Obituary" ColumnName="Obituary" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+                <ScalarProperty Name="ContactAddress2" ColumnName="ContactAddress2" />
+                <ScalarProperty Name="ContactCity" ColumnName="ContactCity" />
+                <ScalarProperty Name="ContactState" ColumnName="ContactState" />
+                <ScalarProperty Name="ContactZip" ColumnName="ContactZip" />
+                <ScalarProperty Name="ContactMemberNum" ColumnName="ContactMemberNum" />
+                <ScalarProperty Name="ContactPhoneNum" ColumnName="ContactPhoneNum" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="ApproverComments" ColumnName="ApproverComments" />
+                <ScalarProperty Name="Risk" ColumnName="Risk" />
+                <ScalarProperty Name="SpotLight" ColumnName="SpotLight" />
+                <ScalarProperty Name="MemorialWallYear" ColumnName="MemorialWallYear" />
+                <ScalarProperty Name="Engrave" ColumnName="Engrave" />
+                <ScalarProperty Name="Engrave2" ColumnName="Engrave2" />
+                <ScalarProperty Name="DateBirthFormat" ColumnName="DateBirthFormat" />
+                <ScalarProperty Name="DateDeathFormat" ColumnName="DateDeathFormat" />
+                <ScalarProperty Name="SignedByDBTeam4EAA" ColumnName="SignedByDBTeam4EAA" />
+                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spObituaries_SelectRecord_Top4" FunctionName="EAA_Memorial_WallModel.Store.spObituaries_SelectRecord_Top4">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EAA_Memorial_WallModel.spObituaries_SelectRecord_Top4_Result">
+                <ScalarProperty Name="ObitKeyID" ColumnName="ObitKeyID" />
+                <ScalarProperty Name="DecHonorific" ColumnName="DecHonorific" />
+                <ScalarProperty Name="DecFirstName" ColumnName="DecFirstName" />
+                <ScalarProperty Name="DecLastName" ColumnName="DecLastName" />
+                <ScalarProperty Name="DecAddress" ColumnName="DecAddress" />
+                <ScalarProperty Name="DecAddress2" ColumnName="DecAddress2" />
+                <ScalarProperty Name="DecCity" ColumnName="DecCity" />
+                <ScalarProperty Name="DecState" ColumnName="DecState" />
+                <ScalarProperty Name="DecZip" ColumnName="DecZip" />
+                <ScalarProperty Name="DecMemberNum" ColumnName="DecMemberNum" />
+                <ScalarProperty Name="DecDateDeath" ColumnName="DecDateDeath" />
+                <ScalarProperty Name="DecDateBirth" ColumnName="DecDateBirth" />
+                <ScalarProperty Name="Obituary" ColumnName="Obituary" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+                <ScalarProperty Name="ContactAddress2" ColumnName="ContactAddress2" />
+                <ScalarProperty Name="ContactCity" ColumnName="ContactCity" />
+                <ScalarProperty Name="ContactState" ColumnName="ContactState" />
+                <ScalarProperty Name="ContactZip" ColumnName="ContactZip" />
+                <ScalarProperty Name="ContactMemberNum" ColumnName="ContactMemberNum" />
+                <ScalarProperty Name="ContactPhoneNum" ColumnName="ContactPhoneNum" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="ApproverComments" ColumnName="ApproverComments" />
+                <ScalarProperty Name="Risk" ColumnName="Risk" />
+                <ScalarProperty Name="SpotLight" ColumnName="SpotLight" />
+                <ScalarProperty Name="MemorialWallYear" ColumnName="MemorialWallYear" />
+                <ScalarProperty Name="Engrave" ColumnName="Engrave" />
+                <ScalarProperty Name="Engrave2" ColumnName="Engrave2" />
+                <ScalarProperty Name="DateBirthFormat" ColumnName="DateBirthFormat" />
+                <ScalarProperty Name="DateDeathFormat" ColumnName="DateDeathFormat" />
+                <ScalarProperty Name="SignedByDBTeam4EAA" ColumnName="SignedByDBTeam4EAA" />
+                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spObituaries_SelectRecord_Unapproved" FunctionName="EAA_Memorial_WallModel.Store.spObituaries_SelectRecord_Unapproved" />
+          <FunctionImportMapping FunctionImportName="spObituaries_SelectRecordApp" FunctionName="EAA_Memorial_WallModel.Store.spObituaries_SelectRecordApp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EAA_Memorial_WallModel.spObituaries_SelectRecordApp_Result">
+                <ScalarProperty Name="ObitKeyID" ColumnName="ObitKeyID" />
+                <ScalarProperty Name="DecHonorific" ColumnName="DecHonorific" />
+                <ScalarProperty Name="DecFirstName" ColumnName="DecFirstName" />
+                <ScalarProperty Name="DecLastName" ColumnName="DecLastName" />
+                <ScalarProperty Name="DecAddress" ColumnName="DecAddress" />
+                <ScalarProperty Name="DecAddress2" ColumnName="DecAddress2" />
+                <ScalarProperty Name="DecCity" ColumnName="DecCity" />
+                <ScalarProperty Name="DecState" ColumnName="DecState" />
+                <ScalarProperty Name="DecZip" ColumnName="DecZip" />
+                <ScalarProperty Name="DecMemberNum" ColumnName="DecMemberNum" />
+                <ScalarProperty Name="DecDateDeath" ColumnName="DecDateDeath" />
+                <ScalarProperty Name="DecDateBirth" ColumnName="DecDateBirth" />
+                <ScalarProperty Name="Obituary" ColumnName="Obituary" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+                <ScalarProperty Name="ContactAddress2" ColumnName="ContactAddress2" />
+                <ScalarProperty Name="ContactCity" ColumnName="ContactCity" />
+                <ScalarProperty Name="ContactState" ColumnName="ContactState" />
+                <ScalarProperty Name="ContactZip" ColumnName="ContactZip" />
+                <ScalarProperty Name="ContactMemberNum" ColumnName="ContactMemberNum" />
+                <ScalarProperty Name="ContactPhoneNum" ColumnName="ContactPhoneNum" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="ApproverComments" ColumnName="ApproverComments" />
+                <ScalarProperty Name="Risk" ColumnName="Risk" />
+                <ScalarProperty Name="SpotLight" ColumnName="SpotLight" />
+                <ScalarProperty Name="MemorialWallYear" ColumnName="MemorialWallYear" />
+                <ScalarProperty Name="Engrave" ColumnName="Engrave" />
+                <ScalarProperty Name="Engrave2" ColumnName="Engrave2" />
+                <ScalarProperty Name="DateBirthFormat" ColumnName="DateBirthFormat" />
+                <ScalarProperty Name="DateDeathFormat" ColumnName="DateDeathFormat" />
+                <ScalarProperty Name="SignedByDBTeam4EAA" ColumnName="SignedByDBTeam4EAA" />
+                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spObituaries_SelectRecordApprover" FunctionName="EAA_Memorial_WallModel.Store.spObituaries_SelectRecordApprover">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EAA_Memorial_WallModel.spObituaries_SelectRecordApprover_Result">
+                <ScalarProperty Name="ObitKeyID" ColumnName="ObitKeyID" />
+                <ScalarProperty Name="DecHonorific" ColumnName="DecHonorific" />
+                <ScalarProperty Name="DecFirstName" ColumnName="DecFirstName" />
+                <ScalarProperty Name="DecLastName" ColumnName="DecLastName" />
+                <ScalarProperty Name="DecAddress" ColumnName="DecAddress" />
+                <ScalarProperty Name="DecAddress2" ColumnName="DecAddress2" />
+                <ScalarProperty Name="DecCity" ColumnName="DecCity" />
+                <ScalarProperty Name="DecState" ColumnName="DecState" />
+                <ScalarProperty Name="DecZip" ColumnName="DecZip" />
+                <ScalarProperty Name="DecMemberNum" ColumnName="DecMemberNum" />
+                <ScalarProperty Name="DecDateDeath" ColumnName="DecDateDeath" />
+                <ScalarProperty Name="DecDateBirth" ColumnName="DecDateBirth" />
+                <ScalarProperty Name="Obituary" ColumnName="Obituary" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+                <ScalarProperty Name="ContactAddress2" ColumnName="ContactAddress2" />
+                <ScalarProperty Name="ContactCity" ColumnName="ContactCity" />
+                <ScalarProperty Name="ContactState" ColumnName="ContactState" />
+                <ScalarProperty Name="ContactZip" ColumnName="ContactZip" />
+                <ScalarProperty Name="ContactMemberNum" ColumnName="ContactMemberNum" />
+                <ScalarProperty Name="ContactPhoneNum" ColumnName="ContactPhoneNum" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="ApproverComments" ColumnName="ApproverComments" />
+                <ScalarProperty Name="Risk" ColumnName="Risk" />
+                <ScalarProperty Name="SpotLight" ColumnName="SpotLight" />
+                <ScalarProperty Name="MemorialWallYear" ColumnName="MemorialWallYear" />
+                <ScalarProperty Name="Engrave" ColumnName="Engrave" />
+                <ScalarProperty Name="Engrave2" ColumnName="Engrave2" />
+                <ScalarProperty Name="DateBirthFormat" ColumnName="DateBirthFormat" />
+                <ScalarProperty Name="DateDeathFormat" ColumnName="DateDeathFormat" />
+                <ScalarProperty Name="SignedByDBTeam4EAA" ColumnName="SignedByDBTeam4EAA" />
+                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spObituaries_SelectWallRecord" FunctionName="EAA_Memorial_WallModel.Store.spObituaries_SelectWallRecord">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EAA_Memorial_WallModel.spObituaries_SelectWallRecord_Result">
+                <ScalarProperty Name="ObitKeyID" ColumnName="ObitKeyID" />
+                <ScalarProperty Name="DecHonorific" ColumnName="DecHonorific" />
+                <ScalarProperty Name="DecFirstName" ColumnName="DecFirstName" />
+                <ScalarProperty Name="DecLastName" ColumnName="DecLastName" />
+                <ScalarProperty Name="DecAddress" ColumnName="DecAddress" />
+                <ScalarProperty Name="DecAddress2" ColumnName="DecAddress2" />
+                <ScalarProperty Name="DecCity" ColumnName="DecCity" />
+                <ScalarProperty Name="DecState" ColumnName="DecState" />
+                <ScalarProperty Name="DecZip" ColumnName="DecZip" />
+                <ScalarProperty Name="DecMemberNum" ColumnName="DecMemberNum" />
+                <ScalarProperty Name="DecDateDeath" ColumnName="DecDateDeath" />
+                <ScalarProperty Name="DecDateBirth" ColumnName="DecDateBirth" />
+                <ScalarProperty Name="Obituary" ColumnName="Obituary" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+                <ScalarProperty Name="ContactAddress2" ColumnName="ContactAddress2" />
+                <ScalarProperty Name="ContactCity" ColumnName="ContactCity" />
+                <ScalarProperty Name="ContactState" ColumnName="ContactState" />
+                <ScalarProperty Name="ContactZip" ColumnName="ContactZip" />
+                <ScalarProperty Name="ContactMemberNum" ColumnName="ContactMemberNum" />
+                <ScalarProperty Name="ContactPhoneNum" ColumnName="ContactPhoneNum" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="ApproverComments" ColumnName="ApproverComments" />
+                <ScalarProperty Name="Risk" ColumnName="Risk" />
+                <ScalarProperty Name="SpotLight" ColumnName="SpotLight" />
+                <ScalarProperty Name="MemorialWallYear" ColumnName="MemorialWallYear" />
+                <ScalarProperty Name="Engrave" ColumnName="Engrave" />
+                <ScalarProperty Name="Engrave2" ColumnName="Engrave2" />
+                <ScalarProperty Name="DateBirthFormat" ColumnName="DateBirthFormat" />
+                <ScalarProperty Name="DateDeathFormat" ColumnName="DateDeathFormat" />
+                <ScalarProperty Name="SignedByDBTeam4EAA" ColumnName="SignedByDBTeam4EAA" />
+                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spObituaries_UpdRecord" FunctionName="EAA_Memorial_WallModel.Store.spObituaries_UpdRecord" />
+          <FunctionImportMapping FunctionImportName="spObituaries_UpdRecordAppr" FunctionName="EAA_Memorial_WallModel.Store.spObituaries_UpdRecordAppr" />
+          <FunctionImportMapping FunctionImportName="spObituariesGuesBook_SelectApp" FunctionName="EAA_Memorial_WallModel.Store.spObituariesGuesBook_SelectApp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EAA_Memorial_WallModel.spObituariesGuesBook_SelectApp_Result">
+                <ScalarProperty Name="GuestBookID" ColumnName="GuestBookID" />
+                <ScalarProperty Name="ObituaryID" ColumnName="ObituaryID" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="SubmitterName" ColumnName="SubmitterName" />
+                <ScalarProperty Name="SubmitterMemberNum" ColumnName="SubmitterMemberNum" />
+                <ScalarProperty Name="SubmitterComments" ColumnName="SubmitterComments" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="ApproverComments" ColumnName="ApproverComments" />
+                <ScalarProperty Name="SignedByDBTeam4EAA" ColumnName="SignedByDBTeam4EAA" />
+                <ScalarProperty Name="ObitKeyID" ColumnName="ObitKeyID" />
+                <ScalarProperty Name="DecHonorific" ColumnName="DecHonorific" />
+                <ScalarProperty Name="DecFirstName" ColumnName="DecFirstName" />
+                <ScalarProperty Name="DecLastName" ColumnName="DecLastName" />
+                <ScalarProperty Name="DecAddress" ColumnName="DecAddress" />
+                <ScalarProperty Name="DecAddress2" ColumnName="DecAddress2" />
+                <ScalarProperty Name="DecCity" ColumnName="DecCity" />
+                <ScalarProperty Name="DecState" ColumnName="DecState" />
+                <ScalarProperty Name="DecZip" ColumnName="DecZip" />
+                <ScalarProperty Name="DecMemberNum" ColumnName="DecMemberNum" />
+                <ScalarProperty Name="DecDateDeath" ColumnName="DecDateDeath" />
+                <ScalarProperty Name="DecDateBirth" ColumnName="DecDateBirth" />
+                <ScalarProperty Name="Obituary" ColumnName="Obituary" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+                <ScalarProperty Name="ContactAddress2" ColumnName="ContactAddress2" />
+                <ScalarProperty Name="ContactCity" ColumnName="ContactCity" />
+                <ScalarProperty Name="ContactState" ColumnName="ContactState" />
+                <ScalarProperty Name="ContactZip" ColumnName="ContactZip" />
+                <ScalarProperty Name="ContactMemberNum" ColumnName="ContactMemberNum" />
+                <ScalarProperty Name="ContactPhoneNum" ColumnName="ContactPhoneNum" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="DateSubmitted1" ColumnName="DateSubmitted1" />
+                <ScalarProperty Name="Approver1" ColumnName="Approver1" />
+                <ScalarProperty Name="Approved1" ColumnName="Approved1" />
+                <ScalarProperty Name="ApprovalDate1" ColumnName="ApprovalDate1" />
+                <ScalarProperty Name="ApproverComments1" ColumnName="ApproverComments1" />
+                <ScalarProperty Name="Risk" ColumnName="Risk" />
+                <ScalarProperty Name="SpotLight" ColumnName="SpotLight" />
+                <ScalarProperty Name="MemorialWallYear" ColumnName="MemorialWallYear" />
+                <ScalarProperty Name="Engrave" ColumnName="Engrave" />
+                <ScalarProperty Name="Engrave2" ColumnName="Engrave2" />
+                <ScalarProperty Name="DateBirthFormat" ColumnName="DateBirthFormat" />
+                <ScalarProperty Name="DateDeathFormat" ColumnName="DateDeathFormat" />
+                <ScalarProperty Name="SignedByDBTeam4EAA1" ColumnName="SignedByDBTeam4EAA1" />
+                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spObituariesMemorialWall_NewRecord" FunctionName="EAA_Memorial_WallModel.Store.spObituariesMemorialWall_NewRecord" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
