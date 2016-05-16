@@ -158,6 +158,7 @@
     <Compile Include="Obits\ObituaryAdd.cs" />
     <Compile Include="ObituaryAddTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestBase.cs" />
     <Compile Include="US\USPersonalInformationPage.cs" />
     <Compile Include="US\USPilotPage.cs" />
   </ItemGroup>
