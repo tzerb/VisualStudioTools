@@ -77,7 +77,9 @@ namespace InsuranceAppWebUI
             pi.txtAddress1 = "Address1";
             pi.txtZipCode = "54025";
 
-            pi.txtDaytimePhone = "2628930720";
+            pi.txtDaytimePhone = "9204370123";
+            pi.txtCellPhone = "2628930720";
+            pi.txtEveningPhone = "9204686577";
             pi.txtCity = "City";
             pi.txtEmailAddress = "tzirbel@eaa.org";
 
@@ -433,7 +435,7 @@ namespace InsuranceAppWebUI
         [TestMethod]
         public void FillCA()
         {
-            using (var browser = new IE("http://dev.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-ca"))
+            using (var browser = new IE("http://www.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-ca"))
             {
                 browser.AutoClose = false;
                 CAPopulatePersonalInfoPage(browser);

@@ -93,6 +93,7 @@ namespace InsuranceAppWebUI
         [TestMethod]
         public void PopulateMemWall()
         {
+            //using (var browser = new IE("http://qa.eaa.org/apps/airventure/bricks_memorialwall.aspx"))
             using (var browser = new IE("http://dev.eaa.org/apps/airventure/bricks_memorialwall.aspx"))
             {
                 browser.AutoClose = false;
@@ -104,7 +105,7 @@ namespace InsuranceAppWebUI
 
                 mw.birthDate = "1/1/2000";
                 mw.deathDate = "1/1/2016";
-                mw.txtObituary = "[center]Center[/center]";
+                mw.txtObituary = "[center]The [b]formatted [/b][i]obituary [/i]will show up [u]here[/u].[/center]";
                 mw.NotesComments = "Notes / Comments";
 
                 mw.firstName = "First";
