@@ -57,7 +57,8 @@ namespace InsuranceAppWebUI.CA
         public SelectList ddlExpireDay { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_ddlExpireDay")); } }
         public SelectList ddlExpireYear { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_ddlExpireYear")); } }
         public SelectList ddlHullCoverage { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_ddlHullCoverage")); } }
-        public SelectList rbLimits { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_rbLimits")); } }
+        public SelectList rbLiabilityLimitsAmount { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_rbLiabilityLimitsAmount")); } }
+        public SelectList rbLiabilityLimitsSubType { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_rbLiabilityLimitsSubType")); } }
         public SelectList ddlAircraftStatus { get { return browser.SelectList(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_ddlAircraftStatus")); } }
     }
 }

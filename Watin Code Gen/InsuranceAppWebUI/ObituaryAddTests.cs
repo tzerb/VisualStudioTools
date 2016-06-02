@@ -38,7 +38,9 @@ namespace InsuranceAppWebUI
         [TestMethod]
         public void RequiredFields()
         {
-            using (var browser = BrowseTo("/en/eaa/apps/obituaries/obituary-add"))
+            //http://dev.eaa.org/apps/obituaries/admin/add.aspx
+            //using (var browser = BrowseTo("/en/eaa/apps/obituaries/obituary-add"))
+            using (var browser = BrowseTo("/apps/obituaries/admin/add.aspx"))
             {
                 ObituaryAdd oa = new ObituaryAdd(browser);
                 oa.Submit.Click();

@@ -43,7 +43,12 @@ namespace InsuranceAppWebUI
             a.txtTotalSeats = tag;
             a.txtHullValue = tag;
             a.ddlHullCoverage.Options[2].Select();
-            a.rbLimits.Options[2].Select();
+            //a.rbLimits.Options[2].Select();
+            var aa = a.rbLiabilityLimitsAmount;
+            browser.RadioButton(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_rbLiabilityLimitsAmount_2")).Checked = true;
+            browser.RadioButton(Find.ById("main_0_eaamain_0_eaacontent_0_acmain_1_Quote_xQuoteWizard_xAircraft_rbLiabilityLimitsSubType_1")).Checked = true;
+            //a.rbLiabilityLimitsAmount.Options[2].Select();
+            //a.rbLiabilityLimitsSubType.Options[2].Select();
             a.txtAirportName = tag;
             a.ddlAircraftStatus.Options[2].Select();
             a.CBLGearConfiguration1 = true;
@@ -435,7 +440,8 @@ namespace InsuranceAppWebUI
         [TestMethod]
         public void FillCA()
         {
-            using (var browser = new IE("http://www.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-ca"))
+            //using (var browser = new IE("http://www.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-ca"))
+            using (var browser = new IE("http://dev.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-ca"))
             {
                 browser.AutoClose = false;
                 CAPopulatePersonalInfoPage(browser);
