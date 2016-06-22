@@ -440,8 +440,8 @@ namespace InsuranceAppWebUI
         [TestMethod]
         public void FillCA()
         {
-            //using (var browser = new IE("http://www.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-ca"))
-            using (var browser = new IE("http://dev.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-ca"))
+            using (var browser = new IE("http://www.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-ca"))
+            //using (var browser = new IE("http://dev.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-ca"))
             {
                 browser.AutoClose = false;
                 CAPopulatePersonalInfoPage(browser);
@@ -486,7 +486,7 @@ namespace InsuranceAppWebUI
         [TestMethod]
         public void FillUS()
         {
-            using (var browser = new IE("http://dev.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-us"))
+            using (var browser = new IE("http://www.eaa.org/eaa/eaa-membership/eaa-aircraft-insurance-plans/aircraft-insurance/insurance-submit-us"))
             {
                 browser.AutoClose = false;
 

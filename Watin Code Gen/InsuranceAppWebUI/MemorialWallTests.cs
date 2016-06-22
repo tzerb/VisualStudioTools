@@ -94,7 +94,7 @@ namespace InsuranceAppWebUI
         public void PopulateMemWall()
         {
             //using (var browser = new IE("http://qa.eaa.org/apps/airventure/bricks_memorialwall.aspx"))
-            using (var browser = new IE("http://dev.eaa.org/apps/airventure/bricks_memorialwall.aspx"))
+            using (var browser = new IE("http://www.eaa.org/apps/airventure/bricks_memorialwall.aspx"))
             {
                 browser.AutoClose = false;
                 MemorialWall mw = new MemorialWall(browser);

@@ -9,8 +9,9 @@ namespace InsuranceAppWebUI
 {
     public class TestBase
     {
-        private static string _serverAddress = "http://dev.eaa.org";
-
+        // private static string _serverAddress = "http://www.eaa.org";
+        //private static string _serverAddress = "http://dev.eaa.org";
+        private static string _serverAddress = "http://qa.eaa.org";
         public string TestImage()
         {
             return @"C:\Users\tzirbel\Pictures\Sky2.jpg";
