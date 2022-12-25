@@ -16,3 +16,7 @@ choco install -y kdiff3
 choco install -y github
 choco install -y visualstudiocode
 choco install -y dotnet-6.0-sdk
+
+#https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools
+#https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep
+#https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell
