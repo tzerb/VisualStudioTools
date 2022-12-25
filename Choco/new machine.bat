@@ -15,4 +15,4 @@ choco install -y linqpad4
 choco install -y kdiff3 
 choco install -y github
 choco install -y visualstudiocode
-
+choco install -y dotnet-6.0-sdk
